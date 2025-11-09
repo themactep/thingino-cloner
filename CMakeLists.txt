@@ -36,6 +36,8 @@ set(SOURCES
     src/ddr/ddr_phy_ddr2.c
     src/ddr/ddr_ctrl_txx.c
     src/ddr/ddr_generator.c
+    src/ddr/ddr_binary_builder.c
+    src/ddr/ddr_config_database.c
     src/utils.c
     src/bootstrap.c
 )
@@ -43,8 +45,8 @@ set(SOURCES
 # Create executable
 add_executable(thingino-cloner ${SOURCES})
 
-# Link libraries
-target_link_libraries(thingino-cloner ${LIBUSB_LIBRARIES})
+# Link libraries (add zlib for CRC32 in ddr_binary_builder)
+target_link_libraries(thingino-cloner ${LIBUSB_LIBRARIES} z)
 
 # Test executable for DDR generator
 add_executable(test_ddr_generator
@@ -96,6 +98,30 @@ add_executable(test_txx_mapping_analysis
 add_executable(test_ddrc_analysis
     src/test_ddrc_analysis.c
 )
+
+# Test executable for new binary builder
+add_executable(test_binary_builder
+    src/test_binary_builder.c
+    src/ddr/ddr_binary_builder.c
+    src/ddr/ddr_config_database.c
+)
+target_link_libraries(test_binary_builder z)
+
+# Test executable for DDR integration
+add_executable(test_ddr_integration
+    src/test_ddr_integration.c
+    src/ddr/ddr_binary_builder.c
+    src/ddr/ddr_config_database.c
+)
+target_link_libraries(test_ddr_integration z)
+
+# Test executable for configuration database
+add_executable(test_config_database
+    src/test_config_database.c
+    src/ddr/ddr_binary_builder.c
+    src/ddr/ddr_config_database.c
+)
+target_link_libraries(test_config_database z)
 
 # Installation
 install(TARGETS thingino-cloner DESTINATION bin)

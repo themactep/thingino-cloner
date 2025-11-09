@@ -116,16 +116,28 @@ int main(int argc __attribute__((unused)), char *argv[] __attribute__((unused)))
     
     // Test generation
     printf("\n=== Testing Generator ===\n");
+
+    // Generate binary
+    uint8_t generated[324];
+    ddr_generate_binary(&config, generated, 324);
+
+    // Save generated binary to file
+    const char *output_path = "build/ddr_generated.bin";
+    FILE *out_file = fopen(output_path, "wb");
+    if (out_file) {
+        fwrite(generated, 1, 324, out_file);
+        fclose(out_file);
+        printf("[OK] Generated binary saved to: %s\n", output_path);
+    } else {
+        printf("[ERROR] Failed to save generated binary\n");
+    }
+
     int result = ddr_test_against_reference(&config, reference, ref_size);
-    
+
     if (result == 0) {
         printf("\n✓ Test PASSED - Generated binary matches reference!\n");
     } else {
         printf("\n✗ Test FAILED - Differences detected\n");
-        
-        // Generate and show for comparison
-        uint8_t generated[324];
-        ddr_generate_binary(&config, generated, 324);
         
         printf("\n=== Byte Comparison ===\n");
         

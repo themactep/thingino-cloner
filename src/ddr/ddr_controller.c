@@ -36,34 +36,43 @@ void ddr_init_object_buffer(const ddr_config_t *config, uint8_t *obj_buffer) {
     // Note: 0x270 is INI config (we set to 0, meaning use defaults)
     *(uint32_t *)(obj_buffer + 0x270) = 0;
 
-    // Initialize ddr_params structure at obj[0x154+]
-    // This is needed by ddrc_config_creator which is called before ddrp generation
-    uint32_t *params = (uint32_t *)(obj_buffer + 0x154);
+    // Initialize ddr_params structure at obj[0x118+]
+    // Based on exact Ghidra decompilation - param_3 in ddrc_config_creator points to class offset 0x118
+    uint32_t *params = (uint32_t *)(obj_buffer + 0x118);
     uint32_t data_width = config->data_width;
-    uint32_t cas_latency = config->cas_latency;
+    uint32_t row_bits = config->row_bits;
+    uint32_t col_bits = config->col_bits;
 
-    params[0] = (uint32_t)config->type;      // obj[0x154] - DDR type (0=DDR2, 1=DDR3, etc.)
-    params[1] = 0;                           // obj[0x158] - Reserved
-    params[2] = 0;                           // obj[0x15c] - Reserved
-    params[3] = 1;                           // obj[0x160] - CS0 enable (1=enabled)
-    params[4] = 0;                           // obj[0x164] - CS1 enable (0=disabled)
-    params[5] = 0;                           // obj[0x168] - DDR select
-    params[6] = 0;                           // obj[0x16c] - Reserved
-    params[7] = 0;                           // obj[0x170] - Reserved
-    params[8] = (data_width == 16) ? 8 : 4;  // obj[0x174] - Data width (4=x8, 8=x16)
-    params[9] = cas_latency;                 // obj[0x178] - CAS latency
-    params[10] = 3;                          // obj[0x17c] - Bank bits (3 = 8 banks)
-    params[11] = 0;                          // obj[0x180] - Reserved
-    params[12] = config->row_bits;           // obj[0x184] - Row bits
-    params[13] = config->col_bits;           // obj[0x188] - Column bits
+    // DDR type: 0=LPDDR, 1=DDR, 4=DDR2, etc.
+    uint32_t ddr_type = (config->type == DDR_TYPE_DDR2) ? 4 : (uint32_t)config->type;
 
-    // Calculate CS0 and CS1 memory sizes in BYTES
-    uint32_t cs0_size_bytes = (1 << config->row_bits) * (1 << config->col_bits) *
-                              (1 << 3) * (data_width / 8);
-    uint32_t cs1_size_bytes = 0;  // Assume single CS for now
+    params[0] = ddr_type;                    // obj[0x118 + 0x00] - DDR type
+    params[1] = 0;                           // obj[0x118 + 0x04] - Reserved
+    params[2] = 0;                           // obj[0x118 + 0x08] - Reserved
+    params[3] = 1;                           // obj[0x118 + 0x0c] = obj[0x124] - CS0 enable
+    params[4] = 0;                           // obj[0x118 + 0x10] = obj[0x128] - CS1 enable
+    params[5] = (data_width == 32) ? 1 : 0;  // obj[0x118 + 0x14] = obj[0x12c] - Data width (0=16-bit, 1=32-bit)
+    params[6] = 0;                           // obj[0x118 + 0x18] = obj[0x130] - Reserved
+    params[7] = 0;                           // obj[0x118 + 0x1c] = obj[0x134] - Reserved
+    params[8] = 8;                           // obj[0x118 + 0x20] = obj[0x138] - Burst length (4 or 8)
+    // TXX-specific encoding: COL0 = col_bits - 4, ROW0 = row_bits - 11
+    // The formula (row0 * 8 + 0x20) & 0x38 transforms row0 to the output ROW0 field
+    // This is different from standard U-Boot (COL0 = col_bits - 8, ROW0 = row_bits - 12)
+    params[9] = col_bits - 4;                // obj[0x118 + 0x24] = obj[0x13c] - COL0 (col_bits - 4 for TXX)
+    params[10] = row_bits - 11;              // obj[0x118 + 0x28] = obj[0x140] - ROW0 (row_bits - 11 for TXX)
+    params[0xb] = col_bits - 4;              // obj[0x118 + 0x2c] = obj[0x144] - COL1 (same as COL0 for single CS)
+    params[0xc] = row_bits - 11;             // obj[0x118 + 0x30] = obj[0x148] - ROW1 (same as ROW0 for single CS)
+    params[0xd] = 1;                         // obj[0x118 + 0x34] = obj[0x14c] - Bank bits (0=4 banks, 1=8 banks)
+    params[0xe] = 0;                         // obj[0x118 + 0x38] = obj[0x150] - CS0 memory size (will be calculated)
+    params[0xf] = 0;                         // obj[0x118 + 0x3c] = obj[0x154] - CS1 memory size
 
-    params[14] = cs0_size_bytes;             // obj[0x18c] - CS0 size in bytes
-    params[15] = cs1_size_bytes;             // obj[0x190] - CS1 size in bytes
+    // Calculate CS0 and CS1 memory sizes in MB (not bytes!)
+    // memsize = (1 << row_bits) * (1 << col_bits) * (1 << bank_bits) * data_width / 8 / 1024 / 1024
+    uint32_t cs0_size_mb = (1 << row_bits) * (1 << col_bits) * 8 * (data_width / 8) / 1024 / 1024;
+    uint32_t cs1_size_mb = 0;  // Assume single CS for now
+
+    params[0xe] = cs0_size_mb;               // obj[0x118 + 0x38] = obj[0x150] - CS0 size in MB
+    params[0xf] = cs1_size_mb;               // obj[0x118 + 0x3c] = obj[0x154] - CS1 size in MB
 }
 
 int ddr_generate_ddrc_with_object(const ddr_config_t *config, uint8_t *obj_buffer, uint8_t *ddrc_regs) {
@@ -78,49 +87,73 @@ int ddr_generate_ddrc_with_object(const ddr_config_t *config, uint8_t *obj_buffe
     // The vendor object is at least 0x20c bytes, but we're only filling what's needed
     if (obj_buffer == NULL) return -1;
 
-    // TXX chips (T31X, T31N, etc.) use a different architecture
-    // For TXX, the DDRC registers are generated in obj_buffer and then
-    // copied to output using a specific mapping (not a direct copy!)
-    // Check if this is a TXX chip (T31X uses TXX architecture)
-    // For now, assume all chips use TXX architecture
-    int use_txx_mapping = 1;  // TODO: Detect chip type from config
+    // ========================================
+    // DDRC SECTION GENERATION
+    // ========================================
+    // The DDRC section (file 0x08-0xBF, 184 bytes) should be generated using
+    // the U-Boot ddrc_config_creator algorithm, NOT the TXX mapping!
+    // The TXX mapping only applies to the DDRP section.
+    //
+    // Based on Ingenic U-Boot tools/ingenic-tools/ddr_params_creator.c
+    // The DDRC section contains a serialized struct ddrc_reg:
+    //   - cfg (4 bytes)
+    //   - ctrl (4 bytes)
+    //   - refcnt (4 bytes)
+    //   - mmap[2] (8 bytes)
+    //   - remap[5] (20 bytes)
+    //   - timing1-6 (24 bytes)
+    //   - autosr_en (4 bytes)
+    //   - clkstp_cfg (4 bytes)
+    //   Total: 72 bytes, rest is padding/zeros
 
-    if (use_txx_mapping) {
-        // Generate TXX DDRC registers first (populates obj[0x7c-0xcc])
-        // This must be done before the mapping below
-        if (config->type == DDR_TYPE_DDR2) {
-            extern int ddr_generate_ddrc_txx_ddr2(const ddr_config_t *config, uint8_t *obj_buffer);
-            if (ddr_generate_ddrc_txx_ddr2(config, obj_buffer) != 0) {
-                return -1;
-            }
+    // For now, generate TXX DDRC registers in obj_buffer for DDRP section use
+    if (config->type == DDR_TYPE_DDR2) {
+        extern int ddr_generate_ddrc_txx_ddr2(const ddr_config_t *config, uint8_t *obj_buffer);
+        if (ddr_generate_ddrc_txx_ddr2(config, obj_buffer) != 0) {
+            return -1;
         }
-
-        // TXX-specific mapping from TXX_DDRBaseParam::ddr_convert_param @ 0x0046ba40
-        // This maps from obj_buffer to DDRC output (first 0x30 bytes of output)
-        uint32_t *ddrc_out = (uint32_t *)ddrc_regs;
-
-        ddrc_out[0] = *(uint32_t *)(obj_buffer + 0x7c);   // Output[0x00-0x03]
-        ddrc_out[1] = *(uint32_t *)(obj_buffer + 0x80);   // Output[0x04-0x07]
-        ddrc_out[2] = *(uint32_t *)(obj_buffer + 0x8c);   // Output[0x08-0x0B]
-        ddrc_out[3] = *(uint32_t *)(obj_buffer + 0x84);   // Output[0x0C-0x0F]
-        ddrc_out[4] = *(uint32_t *)(obj_buffer + 0x90);   // Output[0x10-0x13]
-        ddrc_out[5] = *(uint32_t *)(obj_buffer + 0x94);   // Output[0x14-0x17]
-        ddrc_out[6] = *(uint32_t *)(obj_buffer + 0x88);   // Output[0x18-0x1B]
-        ddrc_out[7] = *(uint32_t *)(obj_buffer + 0xac);   // Output[0x1C-0x1F]
-        ddrc_out[8] = *(uint32_t *)(obj_buffer + 0xb0);   // Output[0x20-0x23]
-        ddrc_out[9] = *(uint32_t *)(obj_buffer + 0xb4);   // Output[0x24-0x27]
-        ddrc_out[10] = *(uint32_t *)(obj_buffer + 0xb8);  // Output[0x28-0x2B]
-        ddrc_out[11] = *(uint32_t *)(obj_buffer + 0xbc);  // Output[0x2C-0x2F]
-
-        // Additional registers found in reference binary
-        // TODO: Verify these are part of the TXX mapping from Ghidra
-        ddrc_out[12] = 0x00000011;  // Output[0x30-0x33] - hardcoded from reference
-        ddrc_out[13] = 0x19800000;  // Output[0x34-0x37] - hardcoded from reference
-
-        // Rest of DDRC section (0x38-0xBB) remains zero (already cleared by memset above)
-
-        return 0;
     }
+
+    // ========================================
+    // Apply TXX ddr_convert_param mapping
+    // Based on Ghidra decompilation @ 0x0046ba40
+    // ========================================
+    uint32_t *ddrc_out = (uint32_t *)ddrc_regs;
+    uint32_t *obj = (uint32_t *)obj_buffer;
+
+    ddrc_out[0] = obj[0x7c / 4];    // obj[0x7c]
+    ddrc_out[1] = obj[0x80 / 4];    // obj[0x80]
+    ddrc_out[2] = obj[0x8c / 4];    // obj[0x8c]
+    ddrc_out[3] = obj[0x84 / 4];    // obj[0x84]
+    ddrc_out[4] = obj[0x90 / 4];    // obj[0x90]
+    ddrc_out[5] = obj[0x94 / 4];    // obj[0x94]
+    ddrc_out[6] = obj[0x88 / 4];    // obj[0x88]
+    ddrc_out[7] = obj[0xac / 4];    // obj[0xac]
+    ddrc_out[8] = obj[0xb0 / 4];    // obj[0xb0]
+    ddrc_out[9] = obj[0xb4 / 4];    // obj[0xb4]
+    ddrc_out[10] = obj[0xb8 / 4];   // obj[0xb8]
+    ddrc_out[11] = obj[0xbc / 4];   // obj[0xbc]
+    ddrc_out[12] = obj[0xc0 / 4];   // obj[0xc0]
+    ddrc_out[13] = obj[0xc4 / 4];   // obj[0xc4]
+    ddrc_out[14] = obj[0xd0 / 4];   // obj[0xd0]
+    ddrc_out[15] = obj[0xd8 / 4];   // obj[0xd8]
+    ddrc_out[16] = obj[0xdc / 4];   // obj[0xdc]
+    ddrc_out[17] = obj[0x1d4 / 4];  // obj[0x1d4]
+    ddrc_out[18] = obj[0x1dc / 4];  // obj[0x1dc]
+    ddrc_out[19] = obj[0x1e4 / 4];  // obj[0x1e4]
+    ddrc_out[20] = obj[0x1e8 / 4];  // obj[0x1e8]
+    ddrc_out[21] = obj[0x1ec / 4];  // obj[0x1ec]
+    ddrc_out[22] = obj[0x1f0 / 4];  // obj[0x1f0]
+    ddrc_out[23] = obj[0x1f4 / 4];  // obj[0x1f4]
+    ddrc_out[24] = obj[0x150 / 4];  // obj[0x150]
+    ddrc_out[25] = obj[0x154 / 4];  // obj[0x154]
+    ddrc_out[26] = obj[0x1c0 / 4];  // obj[0x1c0]
+    ddrc_out[27] = obj[0x1c4 / 4];  // obj[0x1c4]
+    ddrc_out[28] = obj[0x1c8 / 4];  // obj[0x1c8]
+    ddrc_out[29] = obj[0x1cc / 4];  // obj[0x1cc]
+    ddrc_out[30] = obj[0x1d0 / 4];  // obj[0x1d0]
+
+    return 0;
     
     // STAGE 1: Calculate all timing parameters from input config
     uint32_t t_wr = ddr_ns_to_cycles(config->tWR, clock_mhz);

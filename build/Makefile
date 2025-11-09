@@ -252,6 +252,45 @@ test_ddrc_analysis/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddrc_analysis.dir/build.make CMakeFiles/test_ddrc_analysis.dir/build
 .PHONY : test_ddrc_analysis/fast
 
+#=============================================================================
+# Target rules for targets named test_binary_builder
+
+# Build rule for target.
+test_binary_builder: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_binary_builder
+.PHONY : test_binary_builder
+
+# fast build rule for target.
+test_binary_builder/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/build
+.PHONY : test_binary_builder/fast
+
+#=============================================================================
+# Target rules for targets named test_ddr_integration
+
+# Build rule for target.
+test_ddr_integration: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_ddr_integration
+.PHONY : test_ddr_integration
+
+# fast build rule for target.
+test_ddr_integration/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/build
+.PHONY : test_ddr_integration/fast
+
+#=============================================================================
+# Target rules for targets named test_config_database
+
+# Build rule for target.
+test_config_database: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_config_database
+.PHONY : test_config_database
+
+# fast build rule for target.
+test_config_database/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/build
+.PHONY : test_config_database/fast
+
 src/bootstrap.o: src/bootstrap.c.o
 .PHONY : src/bootstrap.o
 
@@ -275,6 +314,72 @@ src/bootstrap.s: src/bootstrap.c.s
 src/bootstrap.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/src/bootstrap.c.s
 .PHONY : src/bootstrap.c.s
+
+src/ddr/ddr_binary_builder.o: src/ddr/ddr_binary_builder.c.o
+.PHONY : src/ddr/ddr_binary_builder.o
+
+# target to build an object file
+src/ddr/ddr_binary_builder.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/src/ddr/ddr_binary_builder.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/src/ddr/ddr_binary_builder.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/src/ddr/ddr_binary_builder.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/src/ddr/ddr_binary_builder.c.o
+.PHONY : src/ddr/ddr_binary_builder.c.o
+
+src/ddr/ddr_binary_builder.i: src/ddr/ddr_binary_builder.c.i
+.PHONY : src/ddr/ddr_binary_builder.i
+
+# target to preprocess a source file
+src/ddr/ddr_binary_builder.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/src/ddr/ddr_binary_builder.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/src/ddr/ddr_binary_builder.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/src/ddr/ddr_binary_builder.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/src/ddr/ddr_binary_builder.c.i
+.PHONY : src/ddr/ddr_binary_builder.c.i
+
+src/ddr/ddr_binary_builder.s: src/ddr/ddr_binary_builder.c.s
+.PHONY : src/ddr/ddr_binary_builder.s
+
+# target to generate assembly for a file
+src/ddr/ddr_binary_builder.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/src/ddr/ddr_binary_builder.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/src/ddr/ddr_binary_builder.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/src/ddr/ddr_binary_builder.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/src/ddr/ddr_binary_builder.c.s
+.PHONY : src/ddr/ddr_binary_builder.c.s
+
+src/ddr/ddr_config_database.o: src/ddr/ddr_config_database.c.o
+.PHONY : src/ddr/ddr_config_database.o
+
+# target to build an object file
+src/ddr/ddr_config_database.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/src/ddr/ddr_config_database.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/src/ddr/ddr_config_database.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/src/ddr/ddr_config_database.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/src/ddr/ddr_config_database.c.o
+.PHONY : src/ddr/ddr_config_database.c.o
+
+src/ddr/ddr_config_database.i: src/ddr/ddr_config_database.c.i
+.PHONY : src/ddr/ddr_config_database.i
+
+# target to preprocess a source file
+src/ddr/ddr_config_database.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/src/ddr/ddr_config_database.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/src/ddr/ddr_config_database.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/src/ddr/ddr_config_database.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/src/ddr/ddr_config_database.c.i
+.PHONY : src/ddr/ddr_config_database.c.i
+
+src/ddr/ddr_config_database.s: src/ddr/ddr_config_database.c.s
+.PHONY : src/ddr/ddr_config_database.s
+
+# target to generate assembly for a file
+src/ddr/ddr_config_database.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/src/ddr/ddr_config_database.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/src/ddr/ddr_config_database.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/src/ddr/ddr_config_database.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/src/ddr/ddr_config_database.c.s
+.PHONY : src/ddr/ddr_config_database.c.s
 
 src/ddr/ddr_controller.o: src/ddr/ddr_controller.c.o
 .PHONY : src/ddr/ddr_controller.o
@@ -651,6 +756,54 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/src/main.c.s
 .PHONY : src/main.c.s
 
+src/test_binary_builder.o: src/test_binary_builder.c.o
+.PHONY : src/test_binary_builder.o
+
+# target to build an object file
+src/test_binary_builder.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/src/test_binary_builder.c.o
+.PHONY : src/test_binary_builder.c.o
+
+src/test_binary_builder.i: src/test_binary_builder.c.i
+.PHONY : src/test_binary_builder.i
+
+# target to preprocess a source file
+src/test_binary_builder.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/src/test_binary_builder.c.i
+.PHONY : src/test_binary_builder.c.i
+
+src/test_binary_builder.s: src/test_binary_builder.c.s
+.PHONY : src/test_binary_builder.s
+
+# target to generate assembly for a file
+src/test_binary_builder.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/src/test_binary_builder.c.s
+.PHONY : src/test_binary_builder.c.s
+
+src/test_config_database.o: src/test_config_database.c.o
+.PHONY : src/test_config_database.o
+
+# target to build an object file
+src/test_config_database.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/src/test_config_database.c.o
+.PHONY : src/test_config_database.c.o
+
+src/test_config_database.i: src/test_config_database.c.i
+.PHONY : src/test_config_database.i
+
+# target to preprocess a source file
+src/test_config_database.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/src/test_config_database.c.i
+.PHONY : src/test_config_database.c.i
+
+src/test_config_database.s: src/test_config_database.c.s
+.PHONY : src/test_config_database.s
+
+# target to generate assembly for a file
+src/test_config_database.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/src/test_config_database.c.s
+.PHONY : src/test_config_database.c.s
+
 src/test_ddr_generator.o: src/test_ddr_generator.c.o
 .PHONY : src/test_ddr_generator.o
 
@@ -674,6 +827,30 @@ src/test_ddr_generator.s: src/test_ddr_generator.c.s
 src/test_ddr_generator.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_generator.dir/build.make CMakeFiles/test_ddr_generator.dir/src/test_ddr_generator.c.s
 .PHONY : src/test_ddr_generator.c.s
+
+src/test_ddr_integration.o: src/test_ddr_integration.c.o
+.PHONY : src/test_ddr_integration.o
+
+# target to build an object file
+src/test_ddr_integration.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/src/test_ddr_integration.c.o
+.PHONY : src/test_ddr_integration.c.o
+
+src/test_ddr_integration.i: src/test_ddr_integration.c.i
+.PHONY : src/test_ddr_integration.i
+
+# target to preprocess a source file
+src/test_ddr_integration.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/src/test_ddr_integration.c.i
+.PHONY : src/test_ddr_integration.c.i
+
+src/test_ddr_integration.s: src/test_ddr_integration.c.s
+.PHONY : src/test_ddr_integration.s
+
+# target to generate assembly for a file
+src/test_ddr_integration.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/src/test_ddr_integration.c.s
+.PHONY : src/test_ddr_integration.c.s
 
 src/test_ddr_mapping_analysis.o: src/test_ddr_mapping_analysis.c.o
 .PHONY : src/test_ddr_mapping_analysis.o
@@ -903,7 +1080,10 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... test_binary_builder"
+	@echo "... test_config_database"
 	@echo "... test_ddr_generator"
+	@echo "... test_ddr_integration"
 	@echo "... test_ddr_mapping_analysis"
 	@echo "... test_ddr_multiplechip"
 	@echo "... test_ddr_reference_analysis"
@@ -913,6 +1093,12 @@ help:
 	@echo "... src/bootstrap.o"
 	@echo "... src/bootstrap.i"
 	@echo "... src/bootstrap.s"
+	@echo "... src/ddr/ddr_binary_builder.o"
+	@echo "... src/ddr/ddr_binary_builder.i"
+	@echo "... src/ddr/ddr_binary_builder.s"
+	@echo "... src/ddr/ddr_config_database.o"
+	@echo "... src/ddr/ddr_config_database.i"
+	@echo "... src/ddr/ddr_config_database.s"
 	@echo "... src/ddr/ddr_controller.o"
 	@echo "... src/ddr/ddr_controller.i"
 	@echo "... src/ddr/ddr_controller.s"
@@ -952,9 +1138,18 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/test_binary_builder.o"
+	@echo "... src/test_binary_builder.i"
+	@echo "... src/test_binary_builder.s"
+	@echo "... src/test_config_database.o"
+	@echo "... src/test_config_database.i"
+	@echo "... src/test_config_database.s"
 	@echo "... src/test_ddr_generator.o"
 	@echo "... src/test_ddr_generator.i"
 	@echo "... src/test_ddr_generator.s"
+	@echo "... src/test_ddr_integration.o"
+	@echo "... src/test_ddr_integration.i"
+	@echo "... src/test_ddr_integration.s"
 	@echo "... src/test_ddr_mapping_analysis.o"
 	@echo "... src/test_ddr_mapping_analysis.i"
 	@echo "... src/test_ddr_mapping_analysis.s"

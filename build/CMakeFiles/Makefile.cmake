@@ -57,4 +57,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_ddr_mapping_analysis.dir/DependInfo.cmake"
   "CMakeFiles/test_txx_mapping_analysis.dir/DependInfo.cmake"
   "CMakeFiles/test_ddrc_analysis.dir/DependInfo.cmake"
+  "CMakeFiles/test_binary_builder.dir/DependInfo.cmake"
+  "CMakeFiles/test_ddr_integration.dir/DependInfo.cmake"
+  "CMakeFiles/test_config_database.dir/DependInfo.cmake"
   )

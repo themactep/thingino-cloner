@@ -46,9 +46,11 @@ typedef struct {
 // Output binary structure (324 bytes total)
 typedef struct {
     char fidb_sig[4];          // "FIDB" at 0x00 (4 bytes)
-    uint8_t ddrc[0xbc];        // 188 bytes (0x04-0xbf) - DDR Controller config
+    uint32_t fidb_size;        // Size of FIDB section at 0x04 (4 bytes) = 0xb8 (184 bytes)
+    uint8_t ddrc[0xb8];        // 184 bytes (0x08-0xbf) - DDR Controller config (FIDB data)
     uint32_t rdd_sig;          // "RDD\0" at 0xc0-0xc3 (4 bytes, packed as uint32)
-    uint8_t ddrp[0x80];        // 128 bytes (0xc4-0x143) - DDR PHY config
+    uint32_t rdd_size;         // Size of RDD section at 0xc4 (4 bytes) = 0x7c (124 bytes)
+    uint8_t ddrp[0x7c];        // 124 bytes (0xc8-0x143) - DDR PHY config (RDD data)
 } ddr_binary_t;
 
 #endif // DDR_TYPES_H

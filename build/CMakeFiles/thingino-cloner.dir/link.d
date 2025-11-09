@@ -18,9 +18,12 @@ thingino-cloner: \
   CMakeFiles/thingino-cloner.dir/src/ddr/ddr_phy_ddr2.c.o \
   CMakeFiles/thingino-cloner.dir/src/ddr/ddr_ctrl_txx.c.o \
   CMakeFiles/thingino-cloner.dir/src/ddr/ddr_generator.c.o \
+  CMakeFiles/thingino-cloner.dir/src/ddr/ddr_binary_builder.c.o \
+  CMakeFiles/thingino-cloner.dir/src/ddr/ddr_config_database.c.o \
   CMakeFiles/thingino-cloner.dir/src/utils.c.o \
   CMakeFiles/thingino-cloner.dir/src/bootstrap.c.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libusb-1.0.so \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libz.so \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so \
@@ -87,11 +90,17 @@ CMakeFiles/thingino-cloner.dir/src/ddr/ddr_ctrl_txx.c.o:
 
 CMakeFiles/thingino-cloner.dir/src/ddr/ddr_generator.c.o:
 
+CMakeFiles/thingino-cloner.dir/src/ddr/ddr_binary_builder.c.o:
+
+CMakeFiles/thingino-cloner.dir/src/ddr/ddr_config_database.c.o:
+
 CMakeFiles/thingino-cloner.dir/src/utils.c.o:
 
 CMakeFiles/thingino-cloner.dir/src/bootstrap.c.o:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libusb-1.0.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/libz.so:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a:
 

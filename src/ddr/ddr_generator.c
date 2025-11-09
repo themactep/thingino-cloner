@@ -40,18 +40,20 @@ int ddr_generate_binary(const ddr_config_t *config, uint8_t *output, size_t outp
     
     // Create binary structure
     ddr_binary_t *binary = (ddr_binary_t *)output;
-    
-    // Add FIDB marker
+
+    // Add FIDB marker and size
     memcpy(binary->fidb_sig, "FIDB", 4);
-    
+    binary->fidb_size = 0xb8;  // 184 bytes
+
     // Generate both DDRC and DDRP using shared object buffer
     if (ddr_generate_with_shared_object(config, binary->ddrc, binary->ddrp) < 0) {
         printf("[ERROR] Failed to generate DDR registers\n");
         return -1;
     }
-    
-    // Add RDD marker (stored as uint32_t: "\0RDD" = 0x44445200 in little-endian)
+
+    // Add RDD marker and size (stored as uint32_t: "\0RDD" = 0x44445200 in little-endian)
     binary->rdd_sig = 0x44445200;
+    binary->rdd_size = 0x7c;  // 124 bytes
     
     printf("[DDR] Generated binary: 324 bytes\n");
     return 0;  // Success

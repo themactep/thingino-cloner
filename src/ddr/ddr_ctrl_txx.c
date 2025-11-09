@@ -29,22 +29,33 @@ int ddr_generate_ddrc_txx_ddr2(const ddr_config_t *config, uint8_t *obj_buffer) 
     // DDRC register structure starts at obj[0x7c]
     uint8_t *ddrc_reg = obj_buffer + 0x7c;
 
-    // Input parameters structure starts at obj[0x154]
-    // Based on ddr_params structure from Ghidra decompilation
-    uint32_t *params = (uint32_t *)(obj_buffer + 0x154);
+    // Input parameters structure starts at obj[0x118]
+    // Based on Ghidra decompilation of TXX_DDRBaseParam::ddrc_config_creator
+    // param_3 is a uint* pointer to obj[0x118] (class member offset)
+    uint32_t *param_3 = (uint32_t *)(obj_buffer + 0x118);
 
-    // Extract parameters from obj[0x154+]
-    uint32_t ddr_type = params[0];           // obj[0x154] - DDR type (0=DDR2, 1=DDR3, etc.)
-    uint32_t cs0_en = params[3];             // obj[0x160] - CS0 enable
-    uint32_t cs1_en = params[4];             // obj[0x164] - CS1 enable
-    uint32_t data_width = params[8];         // obj[0x174] - Data width (4=x8, 8=x16)
-    uint32_t bank_bits = params[10];         // obj[0x17c] - Bank address bits
-    uint32_t row_bits = params[12];          // obj[0x184] - Row address bits
-    uint32_t cs0_row = params[14];           // obj[0x18c] - CS0 row bits
-    uint32_t cs0_col = params[15];           // obj[0x190] - CS0 column bits
+    // Extract parameters from obj[0x118+] using correct Ghidra offsets
+    // TXX-specific encoding: COL0 = col_bits - 4, ROW0 = row_bits - 11
+    // The formula (row0 * 8 + 0x20) & 0x38 transforms row0 to the output ROW0 field
+    // This is different from standard U-Boot (COL0 = col_bits - 8, ROW0 = row_bits - 12)
+    uint32_t ddr_type = param_3[0];          // obj[0x118 + 0x00] - DDR type (0=LPDDR, 1=DDR, 4=DDR2, etc.)
+    uint32_t cs0_en = param_3[3];            // obj[0x118 + 0x0c] = obj[0x124] - CS0 enable
+    uint32_t cs1_en = param_3[4];            // obj[0x118 + 0x10] = obj[0x128] - CS1 enable
+    uint32_t data_width = param_3[5];        // obj[0x118 + 0x14] = obj[0x12c] - Data width (0=16-bit, 1=32-bit)
+    uint32_t burst_length = param_3[8];      // obj[0x118 + 0x20] = obj[0x138] - Burst length (4 or 8)
+    uint32_t col0 = param_3[9];              // obj[0x118 + 0x24] = obj[0x13c] - COL0 (col_bits - 4 for TXX)
+    uint32_t row0 = param_3[10];             // obj[0x118 + 0x28] = obj[0x140] - ROW0 (row_bits - 11 for TXX)
+    uint32_t col1 = param_3[0xb];            // obj[0x118 + 0x2c] = obj[0x144] - COL1 (col1_bits - 4 for TXX)
+    uint32_t row1 = param_3[0xc];            // obj[0x118 + 0x30] = obj[0x148] - ROW1 (row1_bits - 11 for TXX)
+    uint32_t bank_bits = param_3[0xd];       // obj[0x118 + 0x34] = obj[0x14c] - Bank bits (0=4 banks, 1=8 banks)
 
-    (void)cs0_row;  // Will be used for memory mapping
-    (void)cs0_col;  // Will be used for memory mapping
+    printf("[DEBUG] TXX DDRC params: ddr_type=%u, cs0_en=%u, cs1_en=%u, data_width=%u, burst_length=%u\n",
+           ddr_type, cs0_en, cs1_en, data_width, burst_length);
+    printf("[DEBUG] TXX DDRC params: col0=%u, row0=%u, col1=%u, row1=%u, bank_bits=%u\n",
+           col0, row0, col1, row1, bank_bits);
+
+    (void)col1;  // Will be used if CS1EN
+    (void)row1;  // Will be used if CS1EN
 
     // Clear DDRC register area (obj[0x7c-0xcc] = 80 bytes)
     memset(ddrc_reg, 0, 80);
@@ -55,69 +66,74 @@ int ddr_generate_ddrc_txx_ddr2(const ddr_config_t *config, uint8_t *obj_buffer) 
     // ========================================
 
     // ========================================
-    // DDRC CFG Register (obj[0x7c])
-    // Based on Ingenic U-Boot ddr_params_creator.c lines 190-232
+    // DDRC CFG Register (obj[0x7c-0x7f], 4 bytes)
+    // Based on exact Ghidra decompilation of TXX_DDRBaseParam::ddrc_config_creator @ 0x004711c0
     // ========================================
-    uint32_t cfg = 0;
+    // param_2 is a byte* pointer to obj[0x7c]
+    uint8_t *param_2 = ddrc_reg;
 
-    // DW: Data width (bit 0): 0=16-bit, 1=32-bit
-    // data_width in params is 8 for x16, 4 for x8
-    cfg |= (data_width == 8) ? 0 : 1;
+    // Byte 0 (param_2[0] = obj[0x7c])
+    uint8_t bVar3 = param_2[0];
+    uint8_t bVar5 = (uint8_t)(cs1_en << 7);  // CS1EN << 7
+    uint8_t bVar4 = (uint8_t)((cs0_en & 1) << 6);  // CS0EN << 6
+    param_2[0] = (bVar3 & 3) | bVar5 | bVar4;
+    uint8_t bVar6 = ((uint8_t)bank_bits & 1) * 2;  // bank_bits << 1
+    param_2[0] = (bVar3 & 1) | bVar5 | bVar4 | bVar6;
+    param_2[0] = bVar5 | bVar4 | bVar6 | ((uint8_t)data_width & 1);  // data_width & 1
 
-    // BA0: Bank bits for CS0 (bit 1): 0=4 banks, 1=8 banks
-    cfg |= (bank_bits == 3) ? (1 << 1) : 0;
+    printf("[DEBUG] CFG Byte 0: cs1_en=%u, cs0_en=%u, bank_bits=%u, data_width=%u → 0x%02x\n",
+           cs1_en, cs0_en, bank_bits, data_width, param_2[0]);
 
-    // CL: CAS Latency (bits 2-5): Not used in this version, set to 0
-    // cfg |= (cas_latency & 0xF) << 2;
+    // Byte 1 (param_2[1] = obj[0x7d])
+    bVar3 = param_2[1];
+    param_2[1] = bVar3 | 0x80;  // Set bit 7 (MISPE)
+    if (cs0_en == 0) {
+        param_2[1] = (bVar3 & 0xc0) | 0x80;
+    } else {
+        bVar4 = (uint8_t)((row0 * 8 + 0x20) & 0x38);  // ROW0 << 3
+        param_2[1] = (bVar3 & 199) | 0x80 | bVar4;
+        param_2[1] = (bVar3 & 0xc0) | 0x80 | bVar4 | ((uint8_t)col0 & 7);  // COL0
+    }
 
-    // CS0EN: CS0 Enable (bit 6)
-    cfg |= (cs0_en & 1) << 6;
+    // Byte 2 (param_2[2] = obj[0x7e])
+    uint8_t bVar10 = param_2[2];
+    bVar3 = (uint8_t)(bank_bits << 7);  // BA1 << 7
+    param_2[2] = (bVar10 & 0x7f) | bVar3 | 0x40;  // Set bit 6 (IMBA)
+    param_2[2] = (bVar10 & 0x5f) | bVar3 | 0x40 | ((burst_length == 8) << 5);  // BSL << 5
 
-    // CS1EN: CS1 Enable (bit 7)
-    cfg |= (cs1_en & 1) << 7;
+    // Set TYPE field based on DDR type
+    bVar10 = param_2[2];
+    if (ddr_type < 5) {
+        switch(ddr_type) {
+        case 0:  // LPDDR
+            param_2[2] = (bVar10 & 0xf0) | 0xc;
+            break;
+        case 1:  // DDR
+            param_2[2] = (bVar10 & 0xf0) | 6;
+            break;
+        case 4:  // DDR2
+            param_2[2] = (bVar10 & 0xf0) | 8;
+            break;
+        default:
+            param_2[2] = (bVar10 & 0xf0) | 10;
+            break;
+        }
+    }
 
-    // COL0: Column bits for CS0 (bits 8-10): col_bits - 8
-    uint32_t col_bits = params[13];  // obj[0x188]
-    cfg |= ((col_bits - 8) & 0x7) << 8;
+    // Byte 3 (param_2[3] = obj[0x7f])
+    if (cs1_en == 0) {
+        bVar3 = (uint8_t)((row0 * 8 + 0x20) & 0x38);  // ROW1 = ROW0
+        param_2[3] = (bVar10 & 199) | bVar3;
+        param_2[3] = (bVar10 & 0xc0) | bVar3 | ((uint8_t)col0 & 7);  // COL1 = COL0
+    } else {
+        bVar3 = (uint8_t)((row1 * 8 + 0x20) & 0x38);  // ROW1
+        param_2[3] = (bVar10 & 199) | bVar3;
+        param_2[3] = (bVar10 & 0xc0) | bVar3 | ((uint8_t)col1 & 7);  // COL1
+    }
 
-    // ROW0: Row bits for CS0 (bits 11-13): row_bits - 12
-    cfg |= ((row_bits - 12) & 0x7) << 11;
-
-    // bit 14: reserved
-
-    // MISPE: bit 15: Set to 1
-    cfg |= 1 << 15;
-
-    // ODTEN: ODT Enable (bit 16): 0=disabled
-    // cfg |= 0 << 16;
-
-    // TYPE: DDR type (bits 17-19)
-    // DDR2=4 (0b100), DDR3=6 (0b110), LPDDR=3 (0b011), LPDDR2=5 (0b101)
-    uint32_t type_field = (ddr_type == 0) ? 4 : ddr_type;  // DDR2=4
-    cfg |= (type_field & 0x7) << 17;
-
-    // bit 20: reserved
-
-    // BSL: Burst length (bit 21): 0=4, 1=8
-    // Get burst length from config (default to 8 for DDR2)
-    uint32_t burst_length = 8;  // TODO: Get from config
-    cfg |= (burst_length == 8) ? (1 << 21) : 0;
-
-    // IMBA: bit 22: Set to 1 for T31X
-    cfg |= 1 << 22;
-
-    // BA1: Bank bits for CS1 (bit 23): Same as BA0
-    cfg |= (bank_bits == 3) ? (1 << 23) : 0;
-
-    // COL1: Column bits for CS1 (bits 24-26): Same as COL0
-    cfg |= ((col_bits - 8) & 0x7) << 24;
-
-    // ROW1: Row bits for CS1 (bits 27-29): Same as ROW0
-    cfg |= ((row_bits - 12) & 0x7) << 27;
-
-    // bits 30-31: reserved
-
-    *(uint32_t *)(ddrc_reg + 0) = cfg;  // obj[0x7c]
+    printf("[DEBUG] Generated CFG register: 0x%02x%02x%02x%02x\n",
+           param_2[3], param_2[2], param_2[1], param_2[0]);
+    printf("[DEBUG] Reference CFG register: 0x016e3600\n");
 
     // ========================================
     // DDRC CTRL Register (obj[0x80])
@@ -149,9 +165,9 @@ int ddr_generate_ddrc_txx_ddr2(const ddr_config_t *config, uint8_t *obj_buffer) 
     #undef DDRC_CTRL_CKE
 
     // Memory mapping registers (obj[0x90-0x97])
-    // Get CS0 and CS1 sizes from ddr_params (in bytes)
-    uint32_t cs0_size = params[14];  // obj[0x18c]
-    uint32_t cs1_size = params[15];  // obj[0x190]
+    // Get CS0 and CS1 sizes from ddr_params (in MB)
+    uint32_t cs0_size = param_3[0xe];  // obj[0x18c]
+    uint32_t cs1_size = param_3[0xf];  // obj[0x190]
     uint32_t total_size = cs0_size + cs1_size;
 
     uint32_t cs0_map, cs1_map;

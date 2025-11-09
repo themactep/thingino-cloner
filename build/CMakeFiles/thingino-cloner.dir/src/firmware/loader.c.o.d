@@ -74,4 +74,5 @@ CMakeFiles/thingino-cloner.dir/src/firmware/loader.c.o: \
  /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_param_builder.h \
  /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_generator.h \
  /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_types.h \
- /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_types.h
+ /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_types.h \
+ /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_binary_builder.h

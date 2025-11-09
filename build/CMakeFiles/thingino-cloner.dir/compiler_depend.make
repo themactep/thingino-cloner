@@ -90,6 +90,113 @@ CMakeFiles/thingino-cloner.dir/src/bootstrap.c.o: /home/squash/go/src/github.com
   /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/include/syslimits.h
 
+CMakeFiles/thingino-cloner.dir/src/ddr/ddr_binary_builder.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_binary_builder.c \
+  /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_binary_builder.h \
+  /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_config_database.h \
+  /usr/include/endian.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/limits.h \
+  /usr/include/linux/limits.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
+  /usr/include/stdio.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/unistd.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/confname.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/environments.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/zconf.h \
+  /usr/include/zlib.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdarg.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/include/syslimits.h
+
+CMakeFiles/thingino-cloner.dir/src/ddr/ddr_config_database.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_config_database.c \
+  /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_config_database.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h
+
 CMakeFiles/thingino-cloner.dir/src/ddr/ddr_controller.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_controller.c \
   /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_controller.h \
   /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_types.h \
@@ -637,6 +744,7 @@ CMakeFiles/thingino-cloner.dir/src/firmware/handshake.c.o: /home/squash/go/src/g
 
 CMakeFiles/thingino-cloner.dir/src/firmware/loader.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/loader.c \
   /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/include/thingino.h \
+  /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_binary_builder.h \
   /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_generator.h \
   /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_param_builder.h \
   /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_types.h \
@@ -1286,6 +1394,7 @@ thingino-cloner: /lib/i386-linux-gnu/libcap.so.2 \
   /usr/lib/x86_64-linux-gnu/libc.so \
   /usr/lib/x86_64-linux-gnu/libgcc_s.so.1 \
   /usr/lib/x86_64-linux-gnu/libusb-1.0.so \
+  /usr/lib/x86_64-linux-gnu/libz.so \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a \
@@ -1294,6 +1403,8 @@ thingino-cloner: /lib/i386-linux-gnu/libcap.so.2 \
   /usr/lib/i386-linux-gnu/libudev.so.1 \
   /usr/lib/x86_64-linux-gnu/libc_nonshared.a \
   CMakeFiles/thingino-cloner.dir/src/bootstrap.c.o \
+  CMakeFiles/thingino-cloner.dir/src/ddr/ddr_binary_builder.c.o \
+  CMakeFiles/thingino-cloner.dir/src/ddr/ddr_config_database.c.o \
   CMakeFiles/thingino-cloner.dir/src/ddr/ddr_controller.c.o \
   CMakeFiles/thingino-cloner.dir/src/ddr/ddr_ctrl_txx.c.o \
   CMakeFiles/thingino-cloner.dir/src/ddr/ddr_generator.c.o \
@@ -1329,6 +1440,8 @@ CMakeFiles/thingino-cloner.dir/src/ddr/ddr_phy_ddr2.c.o:
 
 CMakeFiles/thingino-cloner.dir/src/ddr/ddr_phy.c.o:
 
+CMakeFiles/thingino-cloner.dir/src/ddr/ddr_binary_builder.c.o:
+
 CMakeFiles/thingino-cloner.dir/src/bootstrap.c.o:
 
 /usr/lib/i386-linux-gnu/libcap.so.2:
@@ -1342,6 +1455,8 @@ CMakeFiles/thingino-cloner.dir/src/ddr/ddr_controller.c.o:
 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1:
 
 /usr/lib/x86_64-linux-gnu/crtn.o:
+
+/usr/lib/x86_64-linux-gnu/libz.so:
 
 /usr/lib/x86_64-linux-gnu/crti.o:
 
@@ -1381,6 +1496,18 @@ CMakeFiles/thingino-cloner.dir/src/firmware/flash_descriptor.c.o:
 
 /usr/include/linux/usbdevice_fs.h:
 
+/usr/include/linux/stddef.h:
+
+/usr/include/linux/posix_types.h:
+
+/usr/lib/linux/uapi/x86/asm/posix_types_64.h:
+
+/usr/include/linux/types.h:
+
+/usr/include/linux/ioctl.h:
+
+/usr/include/fcntl.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
@@ -1407,8 +1534,6 @@ CMakeFiles/thingino-cloner.dir/src/ddr/ddr_generator.c.o:
 
 /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_ctrl_txx.c:
 
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
 /usr/lib/x86_64-linux-gnu/libc.so:
@@ -1416,8 +1541,6 @@ CMakeFiles/thingino-cloner.dir/src/ddr/ddr_generator.c.o:
 /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/usb/device.c:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-least.h:
-
-/usr/include/linux/posix_types.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
@@ -1437,11 +1560,11 @@ CMakeFiles/thingino-cloner.dir/src/ddr/ddr_generator.c.o:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
-
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
-/usr/include/features-time64.h:
+/usr/include/linux/errno.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
@@ -1457,11 +1580,7 @@ CMakeFiles/thingino-cloner.dir/src/ddr/ddr_generator.c.o:
 
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
-/usr/include/fcntl.h:
-
 /usr/include/string.h:
-
-/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/flash_descriptor.c:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
@@ -1503,12 +1622,6 @@ CMakeFiles/thingino-cloner.dir/src/ddr/ddr_utils.c.o:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-/usr/include/unistd.h:
-
-/usr/include/x86_64-linux-gnu/sys/select.h:
-
 /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/include/thingino.h:
 
 /usr/include/x86_64-linux-gnu/bits/confname.h:
@@ -1521,6 +1634,14 @@ CMakeFiles/thingino-cloner.dir/src/main.c.o:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+/usr/include/unistd.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/zlib.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /lib/x86_64-linux-gnu/libudev.so.1:
@@ -1528,6 +1649,10 @@ CMakeFiles/thingino-cloner.dir/src/main.c.o:
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/include/alloca.h:
+
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/flash_descriptor.c:
+
+/usr/include/zconf.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
@@ -1542,6 +1667,8 @@ CMakeFiles/thingino-cloner.dir/src/main.c.o:
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+CMakeFiles/thingino-cloner.dir/src/ddr/ddr_config_database.c.o:
 
 /usr/lib/linux/uapi/x86/asm/ioctl.h:
 
@@ -1591,12 +1718,6 @@ CMakeFiles/thingino-cloner.dir/src/ddr/ddr_param_builder.c.o:
 
 /usr/include/asm-generic/int-ll64.h:
 
-/usr/lib/linux/uapi/x86/asm/posix_types_64.h:
-
-/usr/include/linux/types.h:
-
-/usr/include/linux/ioctl.h:
-
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
@@ -1613,7 +1734,25 @@ CMakeFiles/thingino-cloner.dir/src/ddr/ddr_param_builder.c.o:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/include/stdbool.h:
 
+/usr/include/linux/magic.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/14/include/syslimits.h:
+
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_binary_builder.c:
+
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_binary_builder.h:
+
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_config_database.h:
+
+/usr/include/features-time64.h:
+
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_config_database.c:
 
 /usr/include/features.h:
 
@@ -1672,13 +1811,3 @@ CMakeFiles/thingino-cloner.dir/src/usb/device.c.o:
 /usr/include/asm-generic/ioctls.h:
 
 /usr/include/errno.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
-
-/usr/include/linux/errno.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h:
-
-/usr/include/linux/magic.h:
-
-/usr/include/linux/stddef.h:

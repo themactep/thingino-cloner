@@ -9,6 +9,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/bootstrap.c" "CMakeFiles/thingino-cloner.dir/src/bootstrap.c.o" "gcc" "CMakeFiles/thingino-cloner.dir/src/bootstrap.c.o.d"
+  "/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_binary_builder.c" "CMakeFiles/thingino-cloner.dir/src/ddr/ddr_binary_builder.c.o" "gcc" "CMakeFiles/thingino-cloner.dir/src/ddr/ddr_binary_builder.c.o.d"
+  "/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_config_database.c" "CMakeFiles/thingino-cloner.dir/src/ddr/ddr_config_database.c.o" "gcc" "CMakeFiles/thingino-cloner.dir/src/ddr/ddr_config_database.c.o.d"
   "/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_controller.c" "CMakeFiles/thingino-cloner.dir/src/ddr/ddr_controller.c.o" "gcc" "CMakeFiles/thingino-cloner.dir/src/ddr/ddr_controller.c.o.d"
   "/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_ctrl_txx.c" "CMakeFiles/thingino-cloner.dir/src/ddr/ddr_ctrl_txx.c.o" "gcc" "CMakeFiles/thingino-cloner.dir/src/ddr/ddr_ctrl_txx.c.o.d"
   "/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_generator.c" "CMakeFiles/thingino-cloner.dir/src/ddr/ddr_generator.c.o" "gcc" "CMakeFiles/thingino-cloner.dir/src/ddr/ddr_generator.c.o.d"

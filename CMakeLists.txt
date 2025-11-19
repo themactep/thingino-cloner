@@ -27,6 +27,7 @@ set(SOURCES
     src/usb/protocol.c
     src/firmware/loader.c
     src/firmware/reader.c
+    src/firmware/writer.c
     src/firmware/handshake.c
     src/firmware/flash_descriptor.c
     src/ddr/parser.c

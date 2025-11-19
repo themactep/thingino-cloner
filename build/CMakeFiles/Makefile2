@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/squash/go/src/github.com/wltechblog/thingino-cloner-c
+CMAKE_SOURCE_DIR = /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build
+CMAKE_BINARY_DIR = /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -115,14 +115,14 @@ clean: CMakeFiles/test_firmware_database.dir/clean
 CMakeFiles/thingino-cloner.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100 "Built target thingino-cloner"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100 "Built target thingino-cloner"
 .PHONY : CMakeFiles/thingino-cloner.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/thingino-cloner.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 37
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 38
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/thingino-cloner.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 0
 .PHONY : CMakeFiles/thingino-cloner.dir/rule
 
 # Convenience name for target.
@@ -132,7 +132,7 @@ thingino-cloner: CMakeFiles/thingino-cloner.dir/rule
 # codegen rule for target.
 CMakeFiles/thingino-cloner.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100 "Finished codegen for target thingino-cloner"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100 "Finished codegen for target thingino-cloner"
 .PHONY : CMakeFiles/thingino-cloner.dir/codegen
 
 # clean rule for target.
@@ -147,14 +147,14 @@ CMakeFiles/thingino-cloner.dir/clean:
 CMakeFiles/test_ddr_generator.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_generator.dir/build.make CMakeFiles/test_ddr_generator.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_generator.dir/build.make CMakeFiles/test_ddr_generator.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=9,10,11,12,13,14,15,16,17 "Built target test_ddr_generator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=8,9,10,11,12,13,14,15,16 "Built target test_ddr_generator"
 .PHONY : CMakeFiles/test_ddr_generator.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_ddr_generator.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_ddr_generator.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_ddr_generator.dir/rule
 
 # Convenience name for target.
@@ -164,7 +164,7 @@ test_ddr_generator: CMakeFiles/test_ddr_generator.dir/rule
 # codegen rule for target.
 CMakeFiles/test_ddr_generator.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_generator.dir/build.make CMakeFiles/test_ddr_generator.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=9,10,11,12,13,14,15,16,17 "Finished codegen for target test_ddr_generator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=8,9,10,11,12,13,14,15,16 "Finished codegen for target test_ddr_generator"
 .PHONY : CMakeFiles/test_ddr_generator.dir/codegen
 
 # clean rule for target.
@@ -179,14 +179,14 @@ CMakeFiles/test_ddr_generator.dir/clean:
 CMakeFiles/test_ddr_multiplechip.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_multiplechip.dir/build.make CMakeFiles/test_ddr_multiplechip.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_multiplechip.dir/build.make CMakeFiles/test_ddr_multiplechip.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=31,32,33,34,35,36,37,38,39 "Built target test_ddr_multiplechip"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=30,31,32,33,34,35,36,37,38 "Built target test_ddr_multiplechip"
 .PHONY : CMakeFiles/test_ddr_multiplechip.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_ddr_multiplechip.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_ddr_multiplechip.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_ddr_multiplechip.dir/rule
 
 # Convenience name for target.
@@ -196,7 +196,7 @@ test_ddr_multiplechip: CMakeFiles/test_ddr_multiplechip.dir/rule
 # codegen rule for target.
 CMakeFiles/test_ddr_multiplechip.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_multiplechip.dir/build.make CMakeFiles/test_ddr_multiplechip.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=31,32,33,34,35,36,37,38,39 "Finished codegen for target test_ddr_multiplechip"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=30,31,32,33,34,35,36,37,38 "Finished codegen for target test_ddr_multiplechip"
 .PHONY : CMakeFiles/test_ddr_multiplechip.dir/codegen
 
 # clean rule for target.
@@ -211,14 +211,14 @@ CMakeFiles/test_ddr_multiplechip.dir/clean:
 CMakeFiles/test_ddr_reference_analysis.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_reference_analysis.dir/build.make CMakeFiles/test_ddr_reference_analysis.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_reference_analysis.dir/build.make CMakeFiles/test_ddr_reference_analysis.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=40,41 "Built target test_ddr_reference_analysis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=39,40 "Built target test_ddr_reference_analysis"
 .PHONY : CMakeFiles/test_ddr_reference_analysis.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_ddr_reference_analysis.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_ddr_reference_analysis.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_ddr_reference_analysis.dir/rule
 
 # Convenience name for target.
@@ -228,7 +228,7 @@ test_ddr_reference_analysis: CMakeFiles/test_ddr_reference_analysis.dir/rule
 # codegen rule for target.
 CMakeFiles/test_ddr_reference_analysis.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_reference_analysis.dir/build.make CMakeFiles/test_ddr_reference_analysis.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=40,41 "Finished codegen for target test_ddr_reference_analysis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=39,40 "Finished codegen for target test_ddr_reference_analysis"
 .PHONY : CMakeFiles/test_ddr_reference_analysis.dir/codegen
 
 # clean rule for target.
@@ -243,14 +243,14 @@ CMakeFiles/test_ddr_reference_analysis.dir/clean:
 CMakeFiles/test_ddr_mapping_analysis.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_mapping_analysis.dir/build.make CMakeFiles/test_ddr_mapping_analysis.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_mapping_analysis.dir/build.make CMakeFiles/test_ddr_mapping_analysis.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=22,23,24,25,26,27,28,29,30 "Built target test_ddr_mapping_analysis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=21,22,23,24,25,26,27,28,29 "Built target test_ddr_mapping_analysis"
 .PHONY : CMakeFiles/test_ddr_mapping_analysis.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_ddr_mapping_analysis.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_ddr_mapping_analysis.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_ddr_mapping_analysis.dir/rule
 
 # Convenience name for target.
@@ -260,7 +260,7 @@ test_ddr_mapping_analysis: CMakeFiles/test_ddr_mapping_analysis.dir/rule
 # codegen rule for target.
 CMakeFiles/test_ddr_mapping_analysis.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_mapping_analysis.dir/build.make CMakeFiles/test_ddr_mapping_analysis.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=22,23,24,25,26,27,28,29,30 "Finished codegen for target test_ddr_mapping_analysis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=21,22,23,24,25,26,27,28,29 "Finished codegen for target test_ddr_mapping_analysis"
 .PHONY : CMakeFiles/test_ddr_mapping_analysis.dir/codegen
 
 # clean rule for target.
@@ -275,14 +275,14 @@ CMakeFiles/test_ddr_mapping_analysis.dir/clean:
 CMakeFiles/test_txx_mapping_analysis.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_txx_mapping_analysis.dir/build.make CMakeFiles/test_txx_mapping_analysis.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_txx_mapping_analysis.dir/build.make CMakeFiles/test_txx_mapping_analysis.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=62,63 "Built target test_txx_mapping_analysis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=61,62 "Built target test_txx_mapping_analysis"
 .PHONY : CMakeFiles/test_txx_mapping_analysis.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_txx_mapping_analysis.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_txx_mapping_analysis.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_txx_mapping_analysis.dir/rule
 
 # Convenience name for target.
@@ -292,7 +292,7 @@ test_txx_mapping_analysis: CMakeFiles/test_txx_mapping_analysis.dir/rule
 # codegen rule for target.
 CMakeFiles/test_txx_mapping_analysis.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_txx_mapping_analysis.dir/build.make CMakeFiles/test_txx_mapping_analysis.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=62,63 "Finished codegen for target test_txx_mapping_analysis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=61,62 "Finished codegen for target test_txx_mapping_analysis"
 .PHONY : CMakeFiles/test_txx_mapping_analysis.dir/codegen
 
 # clean rule for target.
@@ -307,14 +307,14 @@ CMakeFiles/test_txx_mapping_analysis.dir/clean:
 CMakeFiles/test_ddrc_analysis.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddrc_analysis.dir/build.make CMakeFiles/test_ddrc_analysis.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddrc_analysis.dir/build.make CMakeFiles/test_ddrc_analysis.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=42,43 "Built target test_ddrc_analysis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=41,42 "Built target test_ddrc_analysis"
 .PHONY : CMakeFiles/test_ddrc_analysis.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_ddrc_analysis.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_ddrc_analysis.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_ddrc_analysis.dir/rule
 
 # Convenience name for target.
@@ -324,7 +324,7 @@ test_ddrc_analysis: CMakeFiles/test_ddrc_analysis.dir/rule
 # codegen rule for target.
 CMakeFiles/test_ddrc_analysis.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddrc_analysis.dir/build.make CMakeFiles/test_ddrc_analysis.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=42,43 "Finished codegen for target test_ddrc_analysis"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=41,42 "Finished codegen for target test_ddrc_analysis"
 .PHONY : CMakeFiles/test_ddrc_analysis.dir/codegen
 
 # clean rule for target.
@@ -339,14 +339,14 @@ CMakeFiles/test_ddrc_analysis.dir/clean:
 CMakeFiles/test_binary_builder.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=1,2,3,4 "Built target test_binary_builder"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=1,2,3 "Built target test_binary_builder"
 .PHONY : CMakeFiles/test_binary_builder.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_binary_builder.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_binary_builder.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_binary_builder.dir/rule
 
 # Convenience name for target.
@@ -356,7 +356,7 @@ test_binary_builder: CMakeFiles/test_binary_builder.dir/rule
 # codegen rule for target.
 CMakeFiles/test_binary_builder.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_binary_builder.dir/build.make CMakeFiles/test_binary_builder.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=1,2,3,4 "Finished codegen for target test_binary_builder"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=1,2,3 "Finished codegen for target test_binary_builder"
 .PHONY : CMakeFiles/test_binary_builder.dir/codegen
 
 # clean rule for target.
@@ -371,14 +371,14 @@ CMakeFiles/test_binary_builder.dir/clean:
 CMakeFiles/test_ddr_integration.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=18,19,20,21 "Built target test_ddr_integration"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=17,18,19,20 "Built target test_ddr_integration"
 .PHONY : CMakeFiles/test_ddr_integration.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_ddr_integration.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_ddr_integration.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_ddr_integration.dir/rule
 
 # Convenience name for target.
@@ -388,7 +388,7 @@ test_ddr_integration: CMakeFiles/test_ddr_integration.dir/rule
 # codegen rule for target.
 CMakeFiles/test_ddr_integration.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_ddr_integration.dir/build.make CMakeFiles/test_ddr_integration.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=18,19,20,21 "Finished codegen for target test_ddr_integration"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=17,18,19,20 "Finished codegen for target test_ddr_integration"
 .PHONY : CMakeFiles/test_ddr_integration.dir/codegen
 
 # clean rule for target.
@@ -403,14 +403,14 @@ CMakeFiles/test_ddr_integration.dir/clean:
 CMakeFiles/test_config_database.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=5,6,7,8 "Built target test_config_database"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=4,5,6,7 "Built target test_config_database"
 .PHONY : CMakeFiles/test_config_database.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_config_database.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_config_database.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_config_database.dir/rule
 
 # Convenience name for target.
@@ -420,7 +420,7 @@ test_config_database: CMakeFiles/test_config_database.dir/rule
 # codegen rule for target.
 CMakeFiles/test_config_database.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config_database.dir/build.make CMakeFiles/test_config_database.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=5,6,7,8 "Finished codegen for target test_config_database"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=4,5,6,7 "Finished codegen for target test_config_database"
 .PHONY : CMakeFiles/test_config_database.dir/codegen
 
 # clean rule for target.
@@ -435,14 +435,14 @@ CMakeFiles/test_config_database.dir/clean:
 CMakeFiles/test_firmware_database.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_firmware_database.dir/build.make CMakeFiles/test_firmware_database.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_firmware_database.dir/build.make CMakeFiles/test_firmware_database.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61 "Built target test_firmware_database"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60 "Built target test_firmware_database"
 .PHONY : CMakeFiles/test_firmware_database.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_firmware_database.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 18
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_firmware_database.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 0
 .PHONY : CMakeFiles/test_firmware_database.dir/rule
 
 # Convenience name for target.
@@ -452,7 +452,7 @@ test_firmware_database: CMakeFiles/test_firmware_database.dir/rule
 # codegen rule for target.
 CMakeFiles/test_firmware_database.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_firmware_database.dir/build.make CMakeFiles/test_firmware_database.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61 "Finished codegen for target test_firmware_database"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60 "Finished codegen for target test_firmware_database"
 .PHONY : CMakeFiles/test_firmware_database.dir/codegen
 
 # clean rule for target.

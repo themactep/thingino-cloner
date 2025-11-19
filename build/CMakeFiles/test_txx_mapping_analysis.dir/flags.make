@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/usr/include/libusb-1.0 -I/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/include -I/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr -I/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware
+C_INCLUDES = -I/usr/include/libusb-1.0 -I/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/include -I/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/ddr -I/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware
 
 C_FLAGS = -std=gnu99 -Wall -Wextra -Werror
 

@@ -2,6 +2,7 @@
 #include "flash_descriptor.h"
 #include <string.h>
 #include <unistd.h>
+#include <stdio.h>
 
 // The complete 972-byte flash descriptor captured from factory tool
 // This is for WIN25Q128JVSQ (16MB NOR flash)
@@ -11,7 +12,7 @@ static const uint8_t flash_descriptor_win25q128[FLASH_DESCRIPTOR_SIZE] = {
     0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,  // Flags
     0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // More flags
     0x00, 0x00, 0x00, 0x00, 0x49, 0x4C, 0x4F, 0x50,  // Magic "ILOP"
-    
+
     // Policy header (0x20-0xC7)
     0xA4, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // Policy size = 164
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -34,7 +35,7 @@ static const uint8_t flash_descriptor_win25q128[FLASH_DESCRIPTOR_SIZE] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    
+
     // Flash config 1 (0xC8-0x1FF)
     0x00, 0x43, 0x46, 0x53, 0xFC, 0x02, 0x00, 0x00,  // "SFC\x00"
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -137,6 +138,64 @@ static const uint8_t flash_descriptor_win25q128[FLASH_DESCRIPTOR_SIZE] = {
     0x00, 0x80, 0x00, 0x00,  // End at 0x3CC (972 bytes total)
 };
 
+
+/**
+ * Send partition marker ("ILOP" header, 172 bytes) to device.
+ *
+ * For the T31x NOR writer_full flow this is the 172-byte bulk OUT chunk sent
+ * immediately before the 972-byte flash descriptor captured in
+ * bulk_out_0004_frame1623_972bytes.bin. We load that exact descriptor from
+ * disk and slice the ILOP/policy header out of it so that the marker and the
+ * descriptor always stay in sync.
+ */
+thingino_error_t flash_partition_marker_send(usb_device_t *device) {
+    if (!device) {
+        return THINGINO_ERROR_INVALID_PARAMETER;
+    }
+
+    uint8_t descriptor[FLASH_DESCRIPTOR_SIZE];
+    if (flash_descriptor_create_t31x_writer_full(descriptor) != 0) {
+        printf("[ERROR] Failed to load T31x writer_full descriptor for partition marker\n");
+        return THINGINO_ERROR_FILE_IO;
+    }
+
+    // Partition marker covers bytes 0x1C-0xC7 (inclusive) of the descriptor,
+    // which is 0xAC = 172 bytes.
+    const size_t marker_offset = 0x1C;
+    const size_t marker_size   = 0xAC; // 172 bytes
+
+    DEBUG_PRINT("Sending partition marker (ILOP, %zu bytes)...\n", marker_size);
+
+    int transferred = 0;
+    int result = libusb_bulk_transfer(
+        device->handle,
+        0x01, // Endpoint OUT 0x01 (same as vendor capture)
+        (unsigned char*)(descriptor + marker_offset),
+        (int)marker_size,
+        &transferred,
+        5000
+    );
+
+    if (result != 0) {
+        printf("[ERROR] Partition marker bulk transfer failed: %d (%s)\n",
+               result, libusb_error_name(result));
+        return THINGINO_ERROR_TRANSFER_FAILED;
+    }
+
+    if (transferred != (int)marker_size) {
+        printf("[ERROR] Partition marker transfer incomplete: %d/%zu bytes\n",
+               transferred, marker_size);
+        return THINGINO_ERROR_TRANSFER_FAILED;
+    }
+
+    // Short delay to let burner process the marker
+    usleep(100000); // 100ms
+
+    DEBUG_PRINT("Partition marker sent successfully\n");
+
+    return THINGINO_SUCCESS;
+}
+
 /**
  * Create flash descriptor for WIN25Q128JVSQ
  */
@@ -147,6 +206,58 @@ int flash_descriptor_create_win25q128(uint8_t *buffer) {
 
     // Copy the pre-defined descriptor
     memcpy(buffer, flash_descriptor_win25q128, FLASH_DESCRIPTOR_SIZE);
+
+    return 0;
+}
+
+/**
+ * Load the exact T31x NOR writer_full flash descriptor captured from the
+ * vendor cloner (config t31x_sfc_nor_writer_full.cfg).
+ *
+ * The binary comes from tools/extracted_write_analysis/
+ *   bulk_out_0004_frame1623_972bytes.bin
+ * and describes a GD25Q127CSIG NOR with a single "full_image" partition
+ * covering the whole device.
+ */
+int flash_descriptor_create_t31x_writer_full(uint8_t *buffer) {
+    if (!buffer) {
+        return -1;
+    }
+
+    const char *candidates[] = {
+        "tools/extracted_write_analysis/bulk_out_0004_frame1623_972bytes.bin",
+        "../tools/extracted_write_analysis/bulk_out_0004_frame1623_972bytes.bin",
+        "../../tools/extracted_write_analysis/bulk_out_0004_frame1623_972bytes.bin"
+    };
+
+    FILE *f = NULL;
+    const char *path_used = NULL;
+    for (size_t i = 0; i < sizeof(candidates) / sizeof(candidates[0]); ++i) {
+        f = fopen(candidates[i], "rb");
+        if (f) {
+            path_used = candidates[i];
+            break;
+        }
+    }
+
+    if (!f) {
+        printf("[ERROR] T31x writer_full descriptor file not found.\n");
+        printf("        Expected at tools/extracted_write_analysis/"
+               "bulk_out_0004_frame1623_972bytes.bin (relative to CWD).\n");
+        return -1;
+    }
+
+    size_t n = fread(buffer, 1, FLASH_DESCRIPTOR_SIZE, f);
+    fclose(f);
+
+    if (n != FLASH_DESCRIPTOR_SIZE) {
+        printf("[ERROR] Failed to read T31x writer_full descriptor from %s: "
+               "got %zu bytes, expected %d\n",
+               path_used ? path_used : "(unknown)", n, FLASH_DESCRIPTOR_SIZE);
+        return -1;
+    }
+
+    DEBUG_PRINT("Loaded T31x writer_full descriptor from %s\n", path_used);
 
     return 0;
 }

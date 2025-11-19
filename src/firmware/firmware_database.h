@@ -14,16 +14,16 @@
 #include <stddef.h>
 #include <stdint.h>
 
-/**
- * Firmware binary structure
- */
+// firmware_binary_t is defined in thingino.h to avoid circular dependencies
+#ifndef THINGINO_H
 typedef struct {
-    const char *processor;      // Processor name (e.g., "t31x", "t41")
-    const uint8_t *spl_data;    // SPL binary data
-    size_t spl_size;            // SPL binary size in bytes
-    const uint8_t *uboot_data;  // U-Boot binary data
-    size_t uboot_size;          // U-Boot binary size in bytes
+    const char *processor;
+    const uint8_t *spl_data;
+    size_t spl_size;
+    const uint8_t *uboot_data;
+    size_t uboot_size;
 } firmware_binary_t;
+#endif
 
 /**
  * Get firmware binaries for a specific processor

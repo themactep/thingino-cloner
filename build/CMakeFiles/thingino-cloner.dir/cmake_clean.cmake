@@ -62,6 +62,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/thingino-cloner.dir/src/firmware/loader.c.o.d"
   "CMakeFiles/thingino-cloner.dir/src/firmware/reader.c.o"
   "CMakeFiles/thingino-cloner.dir/src/firmware/reader.c.o.d"
+  "CMakeFiles/thingino-cloner.dir/src/firmware/writer.c.o"
+  "CMakeFiles/thingino-cloner.dir/src/firmware/writer.c.o.d"
   "CMakeFiles/thingino-cloner.dir/src/main.c.o"
   "CMakeFiles/thingino-cloner.dir/src/main.c.o.d"
   "CMakeFiles/thingino-cloner.dir/src/usb/device.c.o"

@@ -1,7 +1,7 @@
 CMakeFiles/test_ddr_integration.dir/src/ddr/ddr_config_database.c.o: \
- /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_config_database.c \
+ /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/ddr/ddr_config_database.c \
  /usr/include/stdc-predef.h \
- /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_config_database.h \
+ /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/ddr/ddr_config_database.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \

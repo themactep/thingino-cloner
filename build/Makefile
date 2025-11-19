@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/squash/go/src/github.com/wltechblog/thingino-cloner-c
+CMAKE_SOURCE_DIR = /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build
+CMAKE_BINARY_DIR = /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -1177,6 +1177,30 @@ src/firmware/reader.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/src/firmware/reader.c.s
 .PHONY : src/firmware/reader.c.s
 
+src/firmware/writer.o: src/firmware/writer.c.o
+.PHONY : src/firmware/writer.o
+
+# target to build an object file
+src/firmware/writer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/src/firmware/writer.c.o
+.PHONY : src/firmware/writer.c.o
+
+src/firmware/writer.i: src/firmware/writer.c.i
+.PHONY : src/firmware/writer.i
+
+# target to preprocess a source file
+src/firmware/writer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/src/firmware/writer.c.i
+.PHONY : src/firmware/writer.c.i
+
+src/firmware/writer.s: src/firmware/writer.c.s
+.PHONY : src/firmware/writer.s
+
+# target to generate assembly for a file
+src/firmware/writer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/thingino-cloner.dir/build.make CMakeFiles/thingino-cloner.dir/src/firmware/writer.c.s
+.PHONY : src/firmware/writer.c.s
+
 src/main.o: src/main.c.o
 .PHONY : src/main.o
 
@@ -1653,6 +1677,9 @@ help:
 	@echo "... src/firmware/reader.o"
 	@echo "... src/firmware/reader.i"
 	@echo "... src/firmware/reader.s"
+	@echo "... src/firmware/writer.o"
+	@echo "... src/firmware/writer.i"
+	@echo "... src/firmware/writer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

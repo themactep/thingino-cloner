@@ -1,4 +1,5 @@
 #include "thingino.h"
+#include "flash_descriptor.h"
 #include <unistd.h>  // for sleep()
 
 // ============================================================================
@@ -611,6 +612,207 @@ thingino_error_t read_firmware_from_device(usb_manager_t* manager, int index, co
     return THINGINO_SUCCESS;
 }
 
+/**
+ * Write firmware from file to device
+ */
+thingino_error_t write_firmware_from_file(usb_manager_t* manager, int device_index,
+                                         const char* firmware_file, cli_options_t* options) {
+    if (!manager || !firmware_file) {
+        return THINGINO_ERROR_INVALID_PARAMETER;
+    }
+
+    (void)options;  // Unused for now
+
+    printf("\n");
+    printf("================================================================================\n");
+    printf("FIRMWARE WRITE\n");
+    printf("================================================================================\n");
+    printf("\n");
+
+    // List devices
+    device_info_t* devices = NULL;
+    int device_count = 0;
+    thingino_error_t result = usb_manager_find_devices(manager, &devices, &device_count);
+    if (result != THINGINO_SUCCESS) {
+        fprintf(stderr, "Error listing devices: %s\n", thingino_error_to_string(result));
+        return result;
+    }
+
+    if (device_index >= device_count) {
+        fprintf(stderr, "Error: Device index %d out of range (0-%d)\n",
+                device_index, device_count - 1);
+        free(devices);
+        return THINGINO_ERROR_DEVICE_NOT_FOUND;
+    }
+
+    // Open device
+    usb_device_t* device = NULL;
+    result = usb_manager_open_device(manager, &devices[device_index], &device);
+    if (result != THINGINO_SUCCESS) {
+        fprintf(stderr, "Error opening device: %s\n", thingino_error_to_string(result));
+        free(devices);
+        return result;
+    }
+
+    printf("Target Device:\n");
+    printf("  Index: %d\n", device_index);
+    printf("  Bus: %03d Address: %03d\n", devices[device_index].bus, devices[device_index].address);
+    printf("  Variant: %s\n", processor_variant_to_string(devices[device_index].variant));
+    printf("  Stage: %s\n", device_stage_to_string(devices[device_index].stage));
+    printf("\n");
+
+    // Check if device needs bootstrap
+    if (devices[device_index].stage == STAGE_BOOTROM) {
+        printf("Device is in bootrom stage. Bootstrapping to firmware stage first...\n\n");
+
+        bootstrap_config_t bootstrap_config = {
+            .skip_ddr = options->skip_ddr,
+            .config_file = options->config_file,
+            .spl_file = options->spl_file,
+            .uboot_file = options->uboot_file,
+            .sdram_address = 0x80000000,  // Default SDRAM address
+            .timeout = 5000,
+            .verbose = options->verbose
+        };
+
+        result = bootstrap_device(device, &bootstrap_config);
+        if (result != THINGINO_SUCCESS) {
+            fprintf(stderr, "Error: Bootstrap failed: %s\n", thingino_error_to_string(result));
+            usb_device_close(device);
+            free(device);
+            free(devices);
+            return result;
+        }
+
+        printf("\nBootstrap complete. Device should now be in firmware stage.\n");
+        printf("Waiting for device to stabilize...\n\n");
+        usleep(2000000);  // 2 seconds
+
+        // Close and reopen device to get fresh connection
+        usb_device_close(device);
+        free(device);
+
+        // Re-scan for device in firmware stage
+        free(devices);
+        devices = NULL;
+        result = usb_manager_find_devices(manager, &devices, &device_count);
+        if (result != THINGINO_SUCCESS || device_count == 0) {
+            fprintf(stderr, "Error: Device not found after bootstrap\n");
+            if (devices) free(devices);
+            return THINGINO_ERROR_DEVICE_NOT_FOUND;
+        }
+
+        // Find the device again (it may have re-enumerated)
+        int found_index = -1;
+        for (int i = 0; i < device_count; i++) {
+            if (devices[i].stage == STAGE_FIRMWARE) {
+                found_index = i;
+                break;
+            }
+        }
+
+        if (found_index < 0) {
+            fprintf(stderr, "Error: Device not in firmware stage after bootstrap\n");
+            free(devices);
+            return THINGINO_ERROR_PROTOCOL;
+        }
+
+        // Reopen device
+        result = usb_manager_open_device(manager, &devices[found_index], &device);
+        if (result != THINGINO_SUCCESS) {
+            fprintf(stderr, "Error: Failed to reopen device: %s\n", thingino_error_to_string(result));
+            free(devices);
+            return result;
+        }
+
+        printf("Device reopened in firmware stage.\n\n");
+    }
+
+    free(devices);
+
+    // Prepare burner protocol in firmware stage: send partition marker,
+    // then flash descriptor, then initialize the firmware handshake
+    // protocol. This mirrors the vendor write sequence more closely:
+    //   - Chunk 3: 172-byte "ILOP" partition marker (bulk OUT)
+    //   - Chunk 4: 972-byte flash descriptor + policies
+    //   - Then firmware write handshakes and data chunks.
+    if (device->info.stage == STAGE_FIRMWARE &&
+        (device->info.variant == VARIANT_T31 ||
+         device->info.variant == VARIANT_T31X ||
+         device->info.variant == VARIANT_T31ZX)) {
+        printf("Preparing partition marker, flash descriptor and firmware handshake...\n");
+
+        // 1) Send 172-byte partition marker ("ILOP" header)
+        thingino_error_t prep_result = flash_partition_marker_send(device);
+        if (prep_result != THINGINO_SUCCESS) {
+            printf("[ERROR] Failed to send partition marker: %s\n",
+                   thingino_error_to_string(prep_result));
+            usb_device_close(device);
+            free(device);
+            return prep_result;
+        }
+
+        // 2) Build and send full 972-byte flash descriptor
+        uint8_t flash_descriptor[FLASH_DESCRIPTOR_SIZE];
+        if (flash_descriptor_create_t31x_writer_full(flash_descriptor) != 0) {
+            printf("[ERROR] Failed to create T31x writer_full flash descriptor\n");
+            usb_device_close(device);
+            free(device);
+            return THINGINO_ERROR_MEMORY;
+        }
+
+        prep_result = flash_descriptor_send(device, flash_descriptor);
+        if (prep_result != THINGINO_SUCCESS) {
+            printf("[ERROR] Failed to send flash descriptor: %s\n",
+                   thingino_error_to_string(prep_result));
+            usb_device_close(device);
+            free(device);
+            return prep_result;
+        }
+
+        // Give the burner time to process descriptor, matching read path
+        usleep(500000); // 500ms
+
+        // 3) Initialize the firmware handshake protocol (VR_FW_HANDSHAKE)
+        prep_result = firmware_handshake_init(device);
+        if (prep_result != THINGINO_SUCCESS) {
+            printf("[ERROR] Failed to initialize firmware handshake: %s\n",
+                   thingino_error_to_string(prep_result));
+            usb_device_close(device);
+            free(device);
+            return prep_result;
+        }
+    }
+
+    // Get firmware binary (optional - can be NULL if not using embedded firmware)
+    const firmware_binary_t* fw_binary = NULL;
+    // TODO: Detect processor and get firmware binary
+    // fw_binary = firmware_get("t31x");
+
+    // Write firmware
+    printf("Writing firmware to device...\n");
+    printf("  Source file: %s\n", firmware_file);
+    printf("\n");
+
+    result = write_firmware_to_device(device, firmware_file, fw_binary);
+    if (result != THINGINO_SUCCESS) {
+        fprintf(stderr, "Error: Firmware write failed: %s\n", thingino_error_to_string(result));
+        usb_device_close(device);
+        free(device);
+        return result;
+    }
+
+    printf("\n");
+    printf("================================================================================\n");
+    printf("FIRMWARE WRITE COMPLETE\n");
+    printf("================================================================================\n");
+    printf("\n");
+
+    usb_device_close(device);
+    free(device);
+    return THINGINO_SUCCESS;
+}
+
 int main(int argc, char* argv[]) {
     cli_options_t options;
     thingino_error_t result = parse_arguments(argc, argv, &options);
@@ -648,8 +850,11 @@ int main(int argc, char* argv[]) {
             exit_code = 1;
         }
     } else if (options.write_firmware) {
-        printf("Firmware write functionality not yet implemented\n");
-        exit_code = 1;
+        result = write_firmware_from_file(&manager, options.device_index,
+            options.input_file, &options);
+        if (result != THINGINO_SUCCESS) {
+            exit_code = 1;
+        }
     } else {
         printf("No action specified. Use -h for help.\n");
         exit_code = 1;

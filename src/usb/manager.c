@@ -157,7 +157,9 @@ thingino_error_t usb_manager_find_devices(usb_manager_t* manager, device_info_t*
                         thingino_error_t cpu_result = usb_device_get_cpu_info(test_device, &cpu_info);
                         if (cpu_result == THINGINO_SUCCESS) {
                             // Check CPU magic to determine actual stage
-                            if (strncmp((char*)cpu_info.magic, "Boot", 4) == 0) {
+                            // Use both "Boot" and "BOOT" prefixes, same as usb_device_get_cpu_info()
+                            if (strncmp((char*)cpu_info.magic, "Boot", 4) == 0 ||
+                                strncmp((char*)cpu_info.magic, "BOOT", 4) == 0) {
                                 info->stage = STAGE_FIRMWARE;
                                 DEBUG_PRINT("Device %d is actually in firmware stage (CPU magic: %.8s)\n",
                                     device_index, cpu_info.magic);
@@ -165,7 +167,7 @@ thingino_error_t usb_manager_find_devices(usb_manager_t* manager, device_info_t*
                                 DEBUG_PRINT("Device %d is in bootrom stage (CPU magic: %.8s)\n",
                                     device_index, cpu_info.magic);
                             }
-                            
+
                             // Update variant based on clean CPU magic string
                             processor_variant_t detected_variant = detect_variant_from_magic(cpu_info.clean_magic);
                             // Always update variant based on CPU magic detection

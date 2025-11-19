@@ -1,5 +1,5 @@
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o: \
- /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t21.c \
+ /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t21.c \
  /usr/include/stdc-predef.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \

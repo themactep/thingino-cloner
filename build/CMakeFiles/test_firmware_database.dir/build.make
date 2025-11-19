@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/squash/go/src/github.com/wltechblog/thingino-cloner-c
+CMAKE_SOURCE_DIR = /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build
+CMAKE_BINARY_DIR = /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/test_firmware_database.dir/depend.make
@@ -73,242 +73,242 @@ CMakeFiles/test_firmware_database.dir/codegen:
 .PHONY : CMakeFiles/test_firmware_database.dir/codegen
 
 CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/test_firmware_database.c
+CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/test_firmware_database.c
 CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o -MF CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o.d -o CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/test_firmware_database.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o -MF CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o.d -o CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/test_firmware_database.c
 
 CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/test_firmware_database.c > CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/test_firmware_database.c > CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.i
 
 CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/test_firmware_database.c -o CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/test_firmware_database.c -o CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_a1_n_ne_x.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_a1_n_ne_x.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_a1_n_ne_x.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_a1_n_ne_x.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_a1_n_ne_x.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_a1_n_ne_x.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_a1_n_ne_x.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_a1_n_ne_x.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_n_ne_x.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_a1_nt_a.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_a1_nt_a.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_a1_nt_a.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_a1_nt_a.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_a1_nt_a.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_a1_nt_a.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_a1_nt_a.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_a1_nt_a.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_a1_nt_a.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_database.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_database.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_database.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_database.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_database.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_database.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_database.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_database.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_database.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t20.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t20.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t20.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t20.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t20.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t20.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t20.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t20.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t20.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t21.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t21.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t21.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t21.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t21.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t21.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t21.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t21.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t21.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t23.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t23.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t23.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t23.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t23.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t23.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t23.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t23.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t23.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30a.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30a.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30a.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30a.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30a.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30a.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30a.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30a.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30a.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30nl.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30nl.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30nl.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30nl.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30nl.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30nl.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30nl.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30nl.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30nl.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30x.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30x.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30x.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30x.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30x.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30x.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t30x.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t30x.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t30x.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31a.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31a.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31a.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31a.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31a.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31a.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31a.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31a.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31a.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31nl.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31nl.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31nl.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31nl.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31nl.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31nl.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31nl.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31nl.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31nl.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31x.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31x.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31x.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31x.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31x.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31x.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t31x.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t31x.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t31x.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t40.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t40.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t40.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t40.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t40.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t40.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t40.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t40.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t40.c.s
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.o: CMakeFiles/test_firmware_database.dir/flags.make
-CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.o: /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t41.c
+CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.o: /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t41.c
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.o: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.o -c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t41.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.o -MF CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.o.d -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.o -c /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t41.c
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t41.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t41.c > CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.i
 
 CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_t41.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_t41.c -o CMakeFiles/test_firmware_database.dir/src/firmware/firmware_t41.c.s
 
 # Object files for target test_firmware_database
 test_firmware_database_OBJECTS = \
@@ -353,7 +353,7 @@ test_firmware_database: CMakeFiles/test_firmware_database.dir/src/firmware/firmw
 test_firmware_database: CMakeFiles/test_firmware_database.dir/build.make
 test_firmware_database: CMakeFiles/test_firmware_database.dir/compiler_depend.ts
 test_firmware_database: CMakeFiles/test_firmware_database.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking C executable test_firmware_database"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking C executable test_firmware_database"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_firmware_database.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -365,6 +365,6 @@ CMakeFiles/test_firmware_database.dir/clean:
 .PHONY : CMakeFiles/test_firmware_database.dir/clean
 
 CMakeFiles/test_firmware_database.dir/depend:
-	cd /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/squash/go/src/github.com/wltechblog/thingino-cloner-c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build/CMakeFiles/test_firmware_database.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/build/CMakeFiles/test_firmware_database.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/test_firmware_database.dir/depend
 

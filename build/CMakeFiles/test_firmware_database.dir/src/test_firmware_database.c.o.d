@@ -1,7 +1,7 @@
 CMakeFiles/test_firmware_database.dir/src/test_firmware_database.c.o: \
- /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/test_firmware_database.c \
+ /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/test_firmware_database.c \
  /usr/include/stdc-predef.h \
- /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_database.h \
+ /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_database.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \

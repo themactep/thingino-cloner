@@ -96,6 +96,30 @@ thingino_error_t protocol_flush_cache(usb_device_t* device) {
     return THINGINO_SUCCESS;
 }
 
+/**
+ * Read device status
+ */
+thingino_error_t protocol_read_status(usb_device_t* device, uint8_t* status_buffer,
+                                     int buffer_size, int* status_len) {
+    if (!device || !status_buffer || buffer_size < 8) {
+        return THINGINO_ERROR_INVALID_PARAMETER;
+    }
+
+    DEBUG_PRINT("ReadStatus: executing\n");
+
+    // Use VR_FW_READ_STATUS2 (0x19) - most commonly used status check
+    thingino_error_t result = usb_device_vendor_request(device, REQUEST_TYPE_VENDOR,
+        VR_FW_READ_STATUS2, 0, 0, NULL, buffer_size, status_buffer, status_len);
+
+    if (result != THINGINO_SUCCESS) {
+        DEBUG_PRINT("ReadStatus error: %s\n", thingino_error_to_string(result));
+        return result;
+    }
+
+    DEBUG_PRINT("ReadStatus: success, got %d bytes\n", *status_len);
+    return THINGINO_SUCCESS;
+}
+
 thingino_error_t protocol_prog_stage1(usb_device_t* device, uint32_t addr) {
     if (!device) {
         return THINGINO_ERROR_INVALID_PARAMETER;
@@ -164,9 +188,9 @@ thingino_error_t protocol_get_ack(usb_device_t* device, int32_t* status) {
     
     uint8_t data[4];
     int response_length;
-    thingino_error_t result = usb_device_vendor_request(device, REQUEST_TYPE_VENDOR, 
-        VR_GET_CPU_INFO, 0, 0, NULL, 0, data, &response_length);
-    
+    thingino_error_t result = usb_device_vendor_request(device, REQUEST_TYPE_VENDOR,
+        VR_GET_CPU_INFO, 0, 0, NULL, 4, data, &response_length);
+
     if (result != THINGINO_SUCCESS) {
         return result;
     }
@@ -689,8 +713,8 @@ thingino_error_t protocol_fw_read_status(usb_device_t* device, int status_cmd, u
     uint8_t data[4];
     int response_length;
     thingino_error_t result = usb_device_vendor_request(device, REQUEST_TYPE_VENDOR,
-        status_cmd, 0, 0, NULL, 0, data, &response_length);
-    
+        status_cmd, 0, 0, NULL, 4, data, &response_length);
+
     if (result != THINGINO_SUCCESS) {
         DEBUG_PRINT("FWReadStatus error: %s\n", thingino_error_to_string(result));
         return result;

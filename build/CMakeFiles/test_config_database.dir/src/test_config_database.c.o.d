@@ -1,7 +1,7 @@
 CMakeFiles/test_config_database.dir/src/test_config_database.c.o: \
- /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/test_config_database.c \
+ /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/test_config_database.c \
  /usr/include/stdc-predef.h \
- /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_config_database.h \
+ /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/ddr/ddr_config_database.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -19,7 +19,7 @@ CMakeFiles/test_config_database.dir/src/test_config_database.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h \
- /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/ddr/ddr_binary_builder.h \
+ /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/ddr/ddr_binary_builder.h \
  /usr/include/stdio.h /usr/lib/gcc/x86_64-linux-gnu/14/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \

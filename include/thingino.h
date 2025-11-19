@@ -23,6 +23,19 @@ extern bool g_debug_enabled;
     } while(0)
 
 // ============================================================================
+// FORWARD DECLARATIONS
+// ============================================================================
+
+// Forward declare firmware_binary_t (defined in firmware/firmware_database.h)
+typedef struct {
+    const char *processor;
+    const uint8_t *spl_data;
+    size_t spl_size;
+    const uint8_t *uboot_data;
+    size_t uboot_size;
+} firmware_binary_t;
+
+// ============================================================================
 // CONSTANTS
 // ============================================================================
 
@@ -235,25 +248,29 @@ void usb_manager_cleanup(usb_manager_t* manager);
 // Device functions
 thingino_error_t usb_device_init(usb_device_t* device, uint8_t bus, uint8_t address);
 thingino_error_t usb_device_close(usb_device_t* device);
+	thingino_error_t usb_device_reopen(usb_device_t* device);
+
 thingino_error_t usb_device_reset(usb_device_t* device);
 thingino_error_t usb_device_claim_interface(usb_device_t* device);
 thingino_error_t usb_device_release_interface(usb_device_t* device);
 thingino_error_t usb_device_get_cpu_info(usb_device_t* device, cpu_info_t* info);
 
 // Transfer functions
-thingino_error_t usb_device_control_transfer(usb_device_t* device, uint8_t request_type, 
+thingino_error_t usb_device_control_transfer(usb_device_t* device, uint8_t request_type,
     uint8_t request, uint16_t value, uint16_t index, uint8_t* data, uint16_t length, int* transferred);
 thingino_error_t usb_device_bulk_transfer(usb_device_t* device, uint8_t endpoint,
     uint8_t* data, int length, int* transferred, int timeout);
 thingino_error_t usb_device_interrupt_transfer(usb_device_t* device, uint8_t endpoint,
     uint8_t* data, int length, int* transferred, int timeout);
-thingino_error_t usb_device_vendor_request(usb_device_t* device, uint8_t request_type, 
+thingino_error_t usb_device_vendor_request(usb_device_t* device, uint8_t request_type,
     uint8_t request, uint16_t value, uint16_t index, uint8_t* data, uint16_t length, uint8_t* response, int* response_length);
 
 // Protocol functions
 thingino_error_t protocol_set_data_address(usb_device_t* device, uint32_t addr);
 thingino_error_t protocol_set_data_length(usb_device_t* device, uint32_t length);
 thingino_error_t protocol_flush_cache(usb_device_t* device);
+thingino_error_t protocol_read_status(usb_device_t* device, uint8_t* status_buffer,
+                                     int buffer_size, int* status_len);
 thingino_error_t protocol_prog_stage1(usb_device_t* device, uint32_t addr);
 thingino_error_t protocol_prog_stage2(usb_device_t* device, uint32_t addr);
 thingino_error_t protocol_get_ack(usb_device_t* device, int32_t* status);
@@ -297,11 +314,11 @@ thingino_error_t protocol_fw_read_status(usb_device_t* device, int status_cmd, u
 thingino_error_t protocol_vendor_style_read(usb_device_t* device, uint32_t offset, uint32_t size, uint8_t** data, int* actual_len);
 
 // Proper bootloader protocol functions (using code execution pattern)
-thingino_error_t protocol_load_and_execute_code(usb_device_t* device, uint32_t ram_address, 
+thingino_error_t protocol_load_and_execute_code(usb_device_t* device, uint32_t ram_address,
                                                  const uint8_t* code, uint32_t code_size);
-thingino_error_t protocol_proper_firmware_read(usb_device_t* device, uint32_t flash_offset, 
+thingino_error_t protocol_proper_firmware_read(usb_device_t* device, uint32_t flash_offset,
                                                uint32_t read_size, uint8_t** out_data, int* out_len);
-thingino_error_t protocol_proper_firmware_write(usb_device_t* device, uint32_t flash_offset, 
+thingino_error_t protocol_proper_firmware_write(usb_device_t* device, uint32_t flash_offset,
                                                 const uint8_t* data, uint32_t data_size);
 
 // Firmware read functions
@@ -312,13 +329,20 @@ thingino_error_t firmware_read_full(usb_device_t* device, uint8_t** data, uint32
 thingino_error_t firmware_read_cleanup(firmware_read_config_t* config);
 
 // Firmware handshake protocol functions (40-byte chunk transfers)
-thingino_error_t firmware_handshake_read_chunk(usb_device_t* device, uint32_t chunk_index, 
+thingino_error_t firmware_handshake_read_chunk(usb_device_t* device, uint32_t chunk_index,
                                                uint32_t chunk_offset, uint32_t chunk_size,
                                                uint8_t** out_data, int* out_len);
 thingino_error_t firmware_handshake_write_chunk(usb_device_t* device, uint32_t chunk_index,
-                                                uint32_t chunk_offset, const uint8_t* data, 
+                                                uint32_t chunk_offset, const uint8_t* data,
                                                 uint32_t data_size);
 thingino_error_t firmware_handshake_init(usb_device_t* device);
+
+// Firmware writer functions
+thingino_error_t write_firmware_to_device(usb_device_t* device,
+                                         const char* firmware_file,
+                                         const firmware_binary_t* fw_binary);
+thingino_error_t send_bulk_data(usb_device_t* device, uint8_t endpoint,
+                                const uint8_t* data, uint32_t size);
 
 // Utility functions (additional)
 processor_variant_t detect_variant_from_magic(const char* magic);

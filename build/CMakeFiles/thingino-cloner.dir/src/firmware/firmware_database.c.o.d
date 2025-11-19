@@ -1,7 +1,7 @@
 CMakeFiles/thingino-cloner.dir/src/firmware/firmware_database.c.o: \
- /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_database.c \
+ /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_database.c \
  /usr/include/stdc-predef.h \
- /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_database.h \
+ /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_database.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stddef.h \
  /usr/lib/gcc/x86_64-linux-gnu/14/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
@@ -19,7 +19,7 @@ CMakeFiles/thingino-cloner.dir/src/firmware/firmware_database.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_registry.h \
+ /home/matteius/cloner-2.5.43-ubuntu_thingino_t31/thingino-cloner/src/firmware/firmware_registry.h \
  /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \

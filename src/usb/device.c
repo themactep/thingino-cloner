@@ -96,8 +96,22 @@ thingino_error_t usb_device_get_cpu_info(usb_device_t* device, cpu_info_t* info)
     strcpy(info->clean_magic, clean_cpu_str);
 
     // Determine boot stage based on CPU info
-    // Check for "BOOT" prefix which indicates firmware stage
+    // Firmware stage is normally indicated by a "Boot"/"BOOT" prefix, but some
+    // boards report a short CPU string (e.g. "X2580" for T41N/XBurst2, "A1" for
+    // A1-series NVRs) once the vendor firmware is running. Treat these as
+    // firmware stage too so that post-bootstrap detection works correctly.
+    bool is_firmware_stage = false;
     if (strncmp(cpu_str, "Boot", 4) == 0 || strncmp(cpu_str, "BOOT", 4) == 0) {
+        is_firmware_stage = true;
+    } else if (strcmp(cpu_str, "X2580") == 0 || strcmp(cpu_str, "x2580") == 0) {
+        DEBUG_PRINT("GetCPUInfo: Detected X2580 magic, treating as firmware stage (T41N/XBurst2)\n");
+        is_firmware_stage = true;
+    } else if (strncmp(cpu_str, "A1", 2) == 0 || strncmp(cpu_str, "a1", 2) == 0) {
+        DEBUG_PRINT("GetCPUInfo: Detected A1 magic, treating as firmware stage (A1/T31VX board)\n");
+        is_firmware_stage = true;
+    }
+
+    if (is_firmware_stage) {
         info->stage = STAGE_FIRMWARE;
         device->info.stage = STAGE_FIRMWARE;
         DEBUG_PRINT("GetCPUInfo: Device is in firmware stage\n");
@@ -364,22 +378,13 @@ thingino_error_t usb_device_bulk_transfer(usb_device_t* device, uint8_t endpoint
 
     // Special handling for timeouts
     if (result == LIBUSB_ERROR_TIMEOUT) {
-        // Case 1: libusb reports timeout but also reports full-length transfer
+        // If libusb reports a timeout but also reports that the full payload
+        // was transferred, treat this as success. This handles controller
+        // quirks where completion is delayed but data is already on the bus.
         if (transferred && *transferred == length) {
             DEBUG_PRINT(
                 "Bulk transfer reported timeout but full length (%d bytes) was transferred; treating as success\n",
                 *transferred);
-            return THINGINO_SUCCESS;
-        }
-
-        // Case 2: Firmware-stage OUT endpoint on this device is known to misreport
-        // timeouts even when the full 128KB chunk is seen on the bus.
-        // For OUT transfers in firmware stage, treat timeout as success and let
-        // higher-level protocol/CRC checks detect any real issues.
-        if (!(endpoint & 0x80) && device->info.stage == STAGE_FIRMWARE) {
-            DEBUG_PRINT(
-                "Bulk transfer timeout on firmware-stage OUT endpoint; assuming device is still processing (transferred=%d of %d). Treating as success.\n",
-                transferred ? *transferred : -1, length);
             return THINGINO_SUCCESS;
         }
 

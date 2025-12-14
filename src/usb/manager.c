@@ -156,14 +156,15 @@ thingino_error_t usb_manager_find_devices(usb_manager_t* manager, device_info_t*
                         cpu_info_t cpu_info;
                         thingino_error_t cpu_result = usb_device_get_cpu_info(test_device, &cpu_info);
                         if (cpu_result == THINGINO_SUCCESS) {
-                            // Check CPU magic to determine actual stage
-                            // Use both "Boot" and "BOOT" prefixes, same as usb_device_get_cpu_info()
-                            if (strncmp((char*)cpu_info.magic, "Boot", 4) == 0 ||
-                                strncmp((char*)cpu_info.magic, "BOOT", 4) == 0) {
+                            // Determine actual stage using usb_device_get_cpu_info() classification.
+                            // This handles both classic "Boot"/"BOOT" firmware strings and
+                            // XBurst2/X2580-style short CPU IDs.
+                            if (cpu_info.stage == STAGE_FIRMWARE) {
                                 info->stage = STAGE_FIRMWARE;
                                 DEBUG_PRINT("Device %d is actually in firmware stage (CPU magic: %.8s)\n",
                                     device_index, cpu_info.magic);
                             } else {
+                                info->stage = STAGE_BOOTROM;
                                 DEBUG_PRINT("Device %d is in bootrom stage (CPU magic: %.8s)\n",
                                     device_index, cpu_info.magic);
                             }

@@ -133,8 +133,14 @@ thingino_error_t bootstrap_device(usb_device_t* device, const bootstrap_config_t
     // We just wait for SPL to complete DDR initialization
     DEBUG_PRINT("Waiting for SPL to complete DDR initialization (keeping device handle open)...\n");
 
-    // T31 variants need more time than T20 for DDR initialization
-    int wait_ms = 2000;  // 2 seconds for T31 variants
+    // Variant-specific wait for SPL to complete DDR initialization
+    // Vendor pcaps show ~1.1s for T20 and T41/T41N, longer for T31-family parts
+    int wait_ms;
+    if (device->info.variant == VARIANT_T20 || device->info.variant == VARIANT_T41) {
+        wait_ms = 1100;  // Match vendor T20/T41/T41N behavior (~1.1s)
+    } else {
+        wait_ms = 2000;  // Default: allow more time for other variants (e.g., T31 family)
+    }
     DEBUG_PRINT("Waiting %d ms for DDR init...\n", wait_ms);
 
 #ifdef _WIN32
@@ -144,6 +150,33 @@ thingino_error_t bootstrap_device(usb_device_t* device, const bootstrap_config_t
 #endif
 
     DEBUG_PRINT("SPL should have completed, device handle remains valid\n");
+
+    // For T20 and T41/T41N, vendor tools poll GET_CPU_INFO after the SPL wait
+    if (device->info.variant == VARIANT_T20 || device->info.variant == VARIANT_T41) {
+        DEBUG_PRINT("Polling GET_CPU_INFO after SPL wait (T20/T41 vendor pattern)...\n");
+        cpu_info_t poll_info;
+        bool spl_ready = false;
+        for (int attempt = 0; attempt < 10; attempt++) {
+            thingino_error_t poll_result = usb_device_get_cpu_info(device, &poll_info);
+            if (poll_result == THINGINO_SUCCESS) {
+                DEBUG_PRINT("SPL ready after %d attempt(s): stage=%s, magic='%s'\n",
+                    attempt + 1,
+                    device_stage_to_string(poll_info.stage),
+                    poll_info.clean_magic);
+                spl_ready = true;
+                break;
+            }
+#ifdef _WIN32
+            Sleep(20);
+#else
+            usleep(20000);  // 20ms between polls
+#endif
+        }
+        if (!spl_ready) {
+            DEBUG_PRINT("Warning: GET_CPU_INFO polling after SPL failed for variant %s\n",
+                processor_variant_to_string(device->info.variant));
+        }
+    }
 
     // For T31ZX, SPL may reset or re-enumerate the USB device; reopen the handle
     if (device->info.variant == VARIANT_T31ZX) {

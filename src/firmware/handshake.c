@@ -294,20 +294,20 @@ thingino_error_t firmware_handshake_write_chunk(usb_device_t* device, uint32_t c
            chunk_index, chunk_offset, data_size);
 
     // Build 40-byte handshake command for write
-    // Layout derived from vendor T31 write capture vendor_write_real_20251118_122703.pcap:
-    //   Bytes  0-9:  zeros
+    // Layout derived from vendor T31 write capture vendor_write_real_20251118_122703.pcap
+    // and extended with T41N/T41 (XBurst2) trailer from t41_full_write_20251119_185651.pcap:
+    //   Bytes  0-9 : zeros
     //   Bytes 10-11: Chunk offset in 64KB units (little-endian)
     //   Bytes 12-17: zeros
-    //   Bytes 18-19: Chunk size in 64KB units (for 128KB: 0x0002)
+    //   Bytes 18-19: Chunk size in 64KB units (for 128KB: 0x0002, for 64KB: 0x0001)
     //   Bytes 20-23: zeros
     //   Bytes 24-27: 0x00000600 (00 00 06 00)
     //   Bytes 28-31: ~CRC32(chunk_data) (little-endian)
-    //   Bytes 32-39: Constant trailer 20 FB 00 08 A2 77 00 00
+    //   Bytes 32-39: Constant trailer (T31: 20 FB 00 08 A2 77 00 00,
+    //                                   T41N: F0 17 00 44 70 7A 00 00)
     //
-    // Verified pattern from complete capture with 128 chunks:
-    // Handshake 1 (offset 0x00000000): bytes 10-11 = 00 00, CRC = F4 32 19 6F
-    // Handshake 2 (offset 0x00020000): bytes 10-11 = 02 00, CRC = 07 C7 B6 CF
-    // Handshake 3 (offset 0x00040000): bytes 10-11 = 04 00, CRC = B8 84 16 4C
+    // Verified pattern from complete capture with 128 chunks on T31 and
+    // from t41_full_write_20251119_185651.pcap on T41N.
     uint8_t handshake_cmd[40] = {0};
 
     // Bytes 10-11: chunk offset in 64KB units (little-endian).
@@ -318,7 +318,8 @@ thingino_error_t firmware_handshake_write_chunk(usb_device_t* device, uint32_t c
     handshake_cmd[11] = (chunk_units >> 8) & 0xFF;
 
     // Bytes 18-19: chunk size in 64KB units (little-endian).
-    // Vendor writes 0x0002 here for 128KB chunks.
+    // Vendor writes 0x0002 here for 128KB chunks on T31 and 0x0001 for 64KB
+    // chunks on T41N.
     uint32_t size_units = (data_size + 0xFFFF) >> 16;  // ceil(size / 64KB)
     handshake_cmd[18] = (size_units >> 0) & 0xFF;
     handshake_cmd[19] = (size_units >> 8) & 0xFF;
@@ -330,7 +331,7 @@ thingino_error_t firmware_handshake_write_chunk(usb_device_t* device, uint32_t c
     handshake_cmd[27] = 0x00;
 
     // Bytes 28-31: Inverted CRC32 of chunk data (little-endian)
-    // Vendor T31 capture shows this equals ~crc32(chunk_data)
+    // Vendor captures show this equals ~crc32(chunk_data)
     uint32_t crc = firmware_crc32(data, data_size);
     uint32_t crc_inv = ~crc;
 
@@ -339,16 +340,31 @@ thingino_error_t firmware_handshake_write_chunk(usb_device_t* device, uint32_t c
     handshake_cmd[30] = (crc_inv >> 16) & 0xFF;
     handshake_cmd[31] = (crc_inv >> 24) & 0xFF;
 
-    // Bytes 32-39: Constant trailer observed in vendor T31 write handshakes
-    // Hex: 20 FB 00 08 A2 77 00 00
-    handshake_cmd[32] = 0x20;
-    handshake_cmd[33] = 0xFB;
-    handshake_cmd[34] = 0x00;
-    handshake_cmd[35] = 0x08;
-    handshake_cmd[36] = 0xA2;
-    handshake_cmd[37] = 0x77;
-    handshake_cmd[38] = 0x00;
-    handshake_cmd[39] = 0x00;
+    // Bytes 32-39: Constant trailer observed in vendor write handshakes.
+    // T31-family uses 20 FB 00 08 A2 77 00 00 while T41N/T41 uses
+    // F0 17 00 44 70 7A 00 00.
+    if (device->info.stage == STAGE_FIRMWARE &&
+        device->info.variant == VARIANT_T41) {
+        // T41N/T41 (XBurst2) trailer from t41_full_write_20251119_185651.pcap
+        handshake_cmd[32] = 0xF0;
+        handshake_cmd[33] = 0x17;
+        handshake_cmd[34] = 0x00;
+        handshake_cmd[35] = 0x44;
+        handshake_cmd[36] = 0x70;
+        handshake_cmd[37] = 0x7A;
+        handshake_cmd[38] = 0x00;
+        handshake_cmd[39] = 0x00;
+    } else {
+        // Default T31-family trailer
+        handshake_cmd[32] = 0x20;
+        handshake_cmd[33] = 0xFB;
+        handshake_cmd[34] = 0x00;
+        handshake_cmd[35] = 0x08;
+        handshake_cmd[36] = 0xA2;
+        handshake_cmd[37] = 0x77;
+        handshake_cmd[38] = 0x00;
+        handshake_cmd[39] = 0x00;
+    }
 
     // Send handshake using VR_WRITE (0x12), as seen in vendor write capture
     // VR_FW_WRITE1/2 (0x13/0x14) are used for other initialization commands
@@ -381,12 +397,13 @@ thingino_error_t firmware_handshake_write_chunk(usb_device_t* device, uint32_t c
     DEBUG_PRINT("Sending %u bytes of data via bulk-out...\n", data_size);
 
     int transferred = 0;
-    // Use a 1000ms timeout for firmware-stage bulk-out; on this device the
-    // underlying USB stack may report a timeout even after all data is on the
-    // bus, and usb_device_bulk_transfer already treats such timeouts as
-    // success for firmware-stage OUT endpoints.
+    // Use a generous timeout for firmware-stage bulk-out writes. Some burner
+    // firmwares aggressively NAK while erasing/programming, so a 1s timeout
+    // can expire before the host reports any bytes transferred. We allow up
+    // to ~6 seconds for a 64KB chunk to match the protocol timeouts used in
+    // other parts of the stack.
     result = usb_device_bulk_transfer(device, ENDPOINT_OUT, (uint8_t*)data,
-                                      data_size, &transferred, 1000);
+                                      data_size, &transferred, 6000);
 
     if (result != THINGINO_SUCCESS) {
         DEBUG_PRINT("Bulk-out transfer failed: %s\n", thingino_error_to_string(result));
@@ -399,12 +416,33 @@ thingino_error_t firmware_handshake_write_chunk(usb_device_t* device, uint32_t c
     DEBUG_PRINT("Waiting 100ms for device to start processing chunk...\n");
     usleep(100000); // 100ms delay
 
-    // NOTE: In the vendor capture, VR_FW_READ (0x10) is sent after every chunk
-    // and returns a 4-byte status before the next VR_WRITE handshake. On this
-    // device/firmware, that control request times out after the first chunk and
-    // prevents subsequent VR_WRITE handshakes from succeeding. To keep the write
-    // pipeline robust, we rely on timing and bulk-IN log draining instead of a
-    // per-chunk VR_FW_READ.
+    // For T41-family firmware-stage writes, the vendor T41N capture shows a
+    // VR_FW_READ (0x10) after each chunk. On T31 this times out and breaks the
+    // pipeline, so we only issue it on T41 while keeping the timing-based
+    // behavior for other variants.
+    if (device->info.stage == STAGE_FIRMWARE &&
+        device->info.variant == VARIANT_T41) {
+        DEBUG_PRINT("Sending per-chunk VR_FW_READ (0x10) for T41...\n");
+
+        // For T41/T41N, vendor traces show a 4-byte VR_FW_READ (0x10) after
+        // each write chunk. We issue this directly via libusb to avoid the
+        // generic usb_device_vendor_request() retry logic, which can turn a
+        // simple timeout into a long sequence of retries.
+        uint8_t status[4] = {0};
+        int ctrl_result = libusb_control_transfer(device->handle,
+            REQUEST_TYPE_VENDOR, VR_FW_READ, 0, 0,
+            status, sizeof(status), 1000);
+
+        if (ctrl_result < 0) {
+            DEBUG_PRINT("Warning: per-chunk VR_FW_READ for T41 failed: %s\n",
+                        libusb_error_name(ctrl_result));
+            // Don't fail the operation here; the data chunk was already sent.
+        } else {
+            DEBUG_PRINT("Per-chunk VR_FW_READ status: len=%d, bytes=%02X %02X %02X %02X\n",
+                        ctrl_result,
+                        status[0], status[1], status[2], status[3]);
+        }
+    }
 
     // Drain log traffic from bulk-IN endpoint 0x81
     // The vendor capture shows many bulk-IN transfers happen after status check
@@ -436,6 +474,130 @@ thingino_error_t firmware_handshake_write_chunk(usb_device_t* device, uint32_t c
     // Tightened from 1000ms to 300ms to speed up full-image writes while
     // still giving firmware time to progress internal state.
     DEBUG_PRINT("Waiting 300ms for device to finish processing chunk...\n");
+    usleep(300000); // 300ms delay
+
+    return THINGINO_SUCCESS;
+
+}
+
+
+/**
+ * Firmware write with 40-byte handshake protocol for A1 boards.
+ *
+ * A1 uses a different handshake layout than T31/T41, with 1MB chunks and
+ * a unique trailer. Pattern derived from a1_full_write_20251119_221121.pcap:
+ *   Bytes  0-7 : zeros
+ *   Bytes  8-11: Constant 0x00000600 (00 00 06 00)
+ *   Bytes 12-15: Chunk offset in bytes (little-endian)
+ *   Bytes 16-19: Chunk size 0x00100000 (00 00 10 00) = 1MB
+ *   Bytes 20-23: ~CRC32(chunk_data) (little-endian)
+ *   Bytes 24-31: zeros
+ *   Bytes 32-39: A1 trailer (30 24 00 D4 02 75 00 00)
+ */
+thingino_error_t firmware_handshake_write_chunk_a1(usb_device_t* device, uint32_t chunk_index,
+                                                  uint32_t chunk_offset, const uint8_t* data,
+                                                  uint32_t data_size) {
+    if (!device || !data || data_size == 0) {
+        return THINGINO_ERROR_INVALID_PARAMETER;
+    }
+
+    DEBUG_PRINT("FirmwareHandshakeWriteChunkA1: index=%u, offset=0x%08X, size=%u\n",
+           chunk_index, chunk_offset, data_size);
+
+    // Build 40-byte handshake command for write (A1-specific layout)
+    // Pattern from a1_full_write_20251119_221121.pcap showing 1MB chunks:
+    //   Bytes  0-7 : zeros
+    //   Bytes  8-11: Constant 0x00000600 (00 00 06 00)
+    //   Bytes 12-15: Chunk offset in bytes (little-endian)
+    //   Bytes 16-19: Chunk size 0x00100000 (00 00 10 00) = 1MB
+    //   Bytes 20-23: ~CRC32(chunk_data) (little-endian)
+    //   Bytes 24-31: zeros
+    //   Bytes 32-39: A1 trailer (30 24 00 D4 02 75 00 00)
+    uint8_t handshake_cmd[40] = {0};
+
+    // Bytes 8-11: Constant pattern 0x00000600
+    handshake_cmd[8] = 0x00;
+    handshake_cmd[9] = 0x00;
+    handshake_cmd[10] = 0x06;
+    handshake_cmd[11] = 0x00;
+
+    // Bytes 12-15: Chunk offset in bytes (little-endian)
+    handshake_cmd[12] = (chunk_offset >> 0) & 0xFF;
+    handshake_cmd[13] = (chunk_offset >> 8) & 0xFF;
+    handshake_cmd[14] = (chunk_offset >> 16) & 0xFF;
+    handshake_cmd[15] = (chunk_offset >> 24) & 0xFF;
+
+    // Bytes 16-19: Chunk size in bytes (little-endian)
+    // A1 uses 1MB (0x100000) chunks
+    handshake_cmd[16] = (data_size >> 0) & 0xFF;
+    handshake_cmd[17] = (data_size >> 8) & 0xFF;
+    handshake_cmd[18] = (data_size >> 16) & 0xFF;
+    handshake_cmd[19] = (data_size >> 24) & 0xFF;
+
+    // Compute inverted CRC32 of chunk data
+    uint32_t crc = firmware_crc32(data, data_size);
+    uint32_t crc_inv = ~crc;
+
+    // Bytes 20-23: Inverted CRC32 of chunk data (little-endian)
+    handshake_cmd[20] = (crc_inv >> 0) & 0xFF;
+    handshake_cmd[21] = (crc_inv >> 8) & 0xFF;
+    handshake_cmd[22] = (crc_inv >> 16) & 0xFF;
+    handshake_cmd[23] = (crc_inv >> 24) & 0xFF;
+
+    // Bytes 24-31: zeros (already initialized)
+
+    // Bytes 32-39: A1-specific trailer from vendor capture
+    handshake_cmd[32] = 0x30;
+    handshake_cmd[33] = 0x24;
+    handshake_cmd[34] = 0x00;
+    handshake_cmd[35] = 0xD4;
+    handshake_cmd[36] = 0x02;
+    handshake_cmd[37] = 0x75;
+    handshake_cmd[38] = 0x00;
+    handshake_cmd[39] = 0x00;
+
+    // Send handshake using VR_WRITE (0x12)
+    uint8_t handshake_cmd_code = VR_WRITE;
+
+    DEBUG_PRINT("Sending A1 write handshake with command 0x%02X...\n", handshake_cmd_code);
+
+    // Debug: dump handshake bytes for analysis
+    DEBUG_PRINT("A1 Handshake bytes:");
+    for (int i = 0; i < 40; i++) {
+        if (i % 8 == 0) {
+            DEBUG_PRINT("\n  ");
+        }
+        fprintf(stderr, "%02X ", handshake_cmd[i]);
+    }
+    fprintf(stderr, "\n");
+
+    int response_len = 0;
+    thingino_error_t result = usb_device_vendor_request(device, REQUEST_TYPE_OUT,
+        handshake_cmd_code, 0, 0, handshake_cmd, 40, NULL, &response_len);
+
+    if (result != THINGINO_SUCCESS) {
+        DEBUG_PRINT("Failed to send A1 write handshake: %s\n", thingino_error_to_string(result));
+        return result;
+    }
+
+    usleep(50000); // 50ms delay
+
+    // Send actual data via bulk-out
+    DEBUG_PRINT("[A1] Sending %u bytes of data via bulk-out...\n", data_size);
+
+    int transferred = 0;
+    result = usb_device_bulk_transfer(device, ENDPOINT_OUT, (uint8_t*)data,
+                                      data_size, &transferred, 6000);
+
+    if (result != THINGINO_SUCCESS) {
+        DEBUG_PRINT("[A1] Bulk-out transfer failed: %s\n", thingino_error_to_string(result));
+        return result;
+    }
+
+    DEBUG_PRINT("[A1] Data sent: %d/%u bytes\n", transferred, data_size);
+
+    // Give device time to start and finish processing the chunk.
+    DEBUG_PRINT("[A1] Waiting 300ms for device to process chunk...\n");
     usleep(300000); // 300ms delay
 
     return THINGINO_SUCCESS;

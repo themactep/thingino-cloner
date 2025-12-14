@@ -77,17 +77,24 @@ processor_variant_t detect_variant_from_magic(const char* magic) {
     
     DEBUG_PRINT("detect_variant_from_magic: input='%s' (length=%zu)\n", magic, magic ? strlen(magic) : 0);
     
+    // Special-case XBurst2/X2580 boards: CPU magic "X2580" indicates an
+    // XBurst2 platform that is T41N-based (DDR3 W631GU6NG @ 400 MHz).
+    if (strstr(magic, "X2580") || strstr(magic, "x2580")) {
+        DEBUG_PRINT("detect_variant_from_magic: matched X2580 -> T41 (T41N board)\n");
+        return VARIANT_T41;
+    }
+
     // Check for X-series processors first (more specific)
-    if (strstr(magic, "x1000")) return VARIANT_X1000;
-    if (strstr(magic, "x1600")) return VARIANT_X1600;
-    if (strstr(magic, "x1700")) return VARIANT_X1700;
-    if (strstr(magic, "x2000")) return VARIANT_X2000;
-    if (strstr(magic, "x2100")) return VARIANT_X2100;
-    if (strstr(magic, "x2600")) return VARIANT_X2600;
-    
+    if (strstr(magic, "x1000") || strstr(magic, "X1000")) return VARIANT_X1000;
+    if (strstr(magic, "x1600") || strstr(magic, "X1600")) return VARIANT_X1600;
+    if (strstr(magic, "x1700") || strstr(magic, "X1700")) return VARIANT_X1700;
+    if (strstr(magic, "x2000") || strstr(magic, "X2000")) return VARIANT_X2000;
+    if (strstr(magic, "x2100") || strstr(magic, "X2100")) return VARIANT_X2100;
+    if (strstr(magic, "x2600") || strstr(magic, "X2600")) return VARIANT_X2600;
+
     // Check for T31 sub-variants
-    if (strstr(magic, "t31zx") || strstr(magic, "zx")) return VARIANT_T31ZX;
-    
+    if (strstr(magic, "t31zx") || strstr(magic, "T31ZX") || strstr(magic, "zx")) return VARIANT_T31ZX;
+
     // Parse common patterns from Ingenic CPUs
     // Format is typically "BOOT47XX" where XX indicates processor variant
     // But we're getting "T 3 1 V " format (with spaces), so handle that too

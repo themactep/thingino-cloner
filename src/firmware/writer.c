@@ -153,11 +153,17 @@ thingino_error_t write_firmware_to_device(usb_device_t* device,
         fclose(file);
         return THINGINO_ERROR_FILE_IO;
     }
+    if ((unsigned long)firmware_size > (unsigned long)UINT32_MAX) {
+        fprintf(stderr, "Error: Firmware file too large (%ld bytes)\n", firmware_size);
+        fclose(file);
+        return THINGINO_ERROR_INVALID_PARAMETER;
+    }
 
-    printf("  Firmware size: %ld bytes (%.1f KB)\n", firmware_size, firmware_size / 1024.0);
+    uint32_t firmware_size_u = (uint32_t)firmware_size;
+    printf("  Firmware size: %u bytes (%.1f KB)\n", firmware_size_u, firmware_size_u / 1024.0);
 
     // Allocate buffer for firmware
-    uint8_t* firmware_data = (uint8_t*)malloc(firmware_size);
+    uint8_t* firmware_data = (uint8_t*)malloc(firmware_size_u);
     if (!firmware_data) {
         fprintf(stderr, "Error: Cannot allocate memory for firmware\n");
         fclose(file);
@@ -165,10 +171,10 @@ thingino_error_t write_firmware_to_device(usb_device_t* device,
     }
 
     // Read firmware
-    size_t bytes_read = fread(firmware_data, 1, firmware_size, file);
+    size_t bytes_read = fread(firmware_data, 1, firmware_size_u, file);
     fclose(file);
 
-    if (bytes_read != (size_t)firmware_size) {
+    if (bytes_read != (size_t)firmware_size_u) {
         fprintf(stderr, "Error: Failed to read firmware file\n");
         free(firmware_data);
         return THINGINO_ERROR_FILE_IO;
@@ -204,8 +210,8 @@ thingino_error_t write_firmware_to_device(usb_device_t* device,
     }
 
     // Set total firmware length once, before first chunk (matches vendor tool behavior)
-    DEBUG_PRINT("Setting total firmware size with SetDataLength: %lu bytes\n", (unsigned long)firmware_size);
-    result = protocol_set_data_length(device, (uint32_t)firmware_size);
+    DEBUG_PRINT("Setting total firmware size with SetDataLength: %lu bytes\n", (unsigned long)firmware_size_u);
+    result = protocol_set_data_length(device, firmware_size_u);
     if (result != THINGINO_SUCCESS) {
         fprintf(stderr, "Error: Failed to set total firmware length: %s\n", thingino_error_to_string(result));
         free(firmware_data);
@@ -229,10 +235,10 @@ thingino_error_t write_firmware_to_device(usb_device_t* device,
     uint32_t bytes_written = 0;
     uint32_t chunk_num = 0;
 
-    while (bytes_written < firmware_size) {
+    while (bytes_written < firmware_size_u) {
         uint32_t chunk_size = CHUNK_SIZE_128KB;
-        if (bytes_written + chunk_size > firmware_size) {
-            chunk_size = firmware_size - bytes_written;
+        if (bytes_written + chunk_size > firmware_size_u) {
+            chunk_size = firmware_size_u - bytes_written;
         }
 
         chunk_num++;
@@ -241,7 +247,7 @@ thingino_error_t write_firmware_to_device(usb_device_t* device,
 
         printf("  Chunk %u: Writing %u bytes at 0x%08X (%.1f%%)...\n",
                chunk_num, chunk_size, current_flash_addr,
-               (bytes_written + chunk_size) * 100.0 / firmware_size);
+               (bytes_written + chunk_size) * 100.0 / firmware_size_u);
 
         // Send handshake command + data for this chunk
         // This function handles both the 40-byte handshake and the bulk data transfer

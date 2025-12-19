@@ -17,3 +17,4 @@ __pycache__/
 *.dll
 *.exe
 *.out
+.DS_Store

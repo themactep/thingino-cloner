@@ -2,7 +2,9 @@
 
 #ifndef _WIN32
 #include <sys/ioctl.h>
+#ifndef __APPLE__
 #include <linux/usbdevice_fs.h>
+#endif
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>

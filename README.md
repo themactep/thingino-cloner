@@ -20,6 +20,17 @@ cmake ..
 make
 ```
 
+### Cross-compile for Windows (MinGW-w64)
+
+```bash
+sudo apt-get install mingw-w64
+cmake -S . -B build-windows \
+   -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/mingw-w64-x86_64.cmake
+cmake --build build-windows
+```
+
+The toolchain file wires in the bundled libusb binaries (`third_party/libusb/windows/x86_64`). Install the MinGW zlib development package (e.g. `mingw-w64-x86-64-zlib` on Debian) if your distribution does not ship it by default.
+
 ### Usage
 
 ```bash

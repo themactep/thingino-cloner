@@ -5,9 +5,9 @@
 
 #include "ddr_binary_builder.h"
 #include "ddr_config_database.h"
+#include "crc32.h"
 #include <string.h>
 #include <stdio.h>
-#include <zlib.h>
 
 /**
  * Get default platform configuration from embedded database
@@ -218,7 +218,7 @@ size_t ddr_build_rdd(const platform_config_t *platform, const ddr_phy_params_t *
     memcpy(rdd_data + 124 - 20, dq_mapping, 20);
 
     // Calculate CRC32 checksum (skip first 4 bytes)
-    uint32_t crc = crc32(0L, rdd_data + 4, 120);
+    uint32_t crc = thingino_crc32(rdd_data + 4, 120);
     write_u32_le(rdd_data, crc);
 
     // Build header: padding + "RDD" + size (matches vendor layout)

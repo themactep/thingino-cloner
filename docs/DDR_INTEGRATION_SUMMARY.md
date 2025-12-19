@@ -37,7 +37,7 @@ Updated `firmware_generate_ddr_config()` to:
 ### 3. Build System (`CMakeLists.txt`)
 
 - Added `src/ddr/ddr_binary_builder.c` to main executable sources
-- Linked `zlib` library for CRC32 calculation
+- Introduced `src/ddr/crc32.c` so CRC32 generation no longer depends on zlib
 - Created `test_ddr_integration` test executable
 
 ## Testing

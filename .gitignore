@@ -9,6 +9,7 @@ cmake_install.cmake
 Makefile
 *.dir/
 __pycache__/
+.idea/
 *.o
 *.obj
 *.a

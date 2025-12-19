@@ -6,8 +6,16 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # Find required packages
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(LIBUSB_PKG libusb-1.0)
+set(LIBUSB_PKG_FOUND FALSE)
+if (CMAKE_CROSSCOMPILING)
+    find_package(PkgConfig QUIET)
+else()
+    find_package(PkgConfig REQUIRED)
+endif()
+
+if (PkgConfig_FOUND)
+    pkg_check_modules(LIBUSB_PKG libusb-1.0)
+endif()
 
 set(LIBUSB_INCLUDE_DIRS "")
 set(LIBUSB_LIBRARIES "")
@@ -140,6 +148,7 @@ set(SOURCES
     src/ddr/ddr_ctrl_txx.c
     src/ddr/ddr_generator.c
     src/ddr/ddr_binary_builder.c
+    src/ddr/crc32.c
     src/ddr/ddr_config_database.c
     src/utils.c
     src/bootstrap.c
@@ -152,8 +161,8 @@ list(APPEND SOURCES ${FIRMWARE_SOURCES})
 # Create executable
 add_executable(thingino-cloner ${SOURCES})
 
-# Link libraries (add zlib for CRC32 in ddr_binary_builder)
-target_link_libraries(thingino-cloner ${LIBUSB_LIBRARIES} z)
+# Link libraries
+target_link_libraries(thingino-cloner ${LIBUSB_LIBRARIES})
 
 # Test executable for DDR generator
 add_executable(test_ddr_generator
@@ -210,25 +219,25 @@ add_executable(test_ddrc_analysis
 add_executable(test_binary_builder
     tests/unit/ddr/test_binary_builder.c
     src/ddr/ddr_binary_builder.c
+    src/ddr/crc32.c
     src/ddr/ddr_config_database.c
 )
-target_link_libraries(test_binary_builder z)
 
 # Test executable for DDR integration
 add_executable(test_ddr_integration
     tests/unit/ddr/test_ddr_integration.c
     src/ddr/ddr_binary_builder.c
+    src/ddr/crc32.c
     src/ddr/ddr_config_database.c
 )
-target_link_libraries(test_ddr_integration z)
 
 # Test executable for configuration database
 add_executable(test_config_database
     tests/unit/ddr/test_config_database.c
     src/ddr/ddr_binary_builder.c
+    src/ddr/crc32.c
     src/ddr/ddr_config_database.c
 )
-target_link_libraries(test_config_database z)
 
 # Test firmware database
 add_executable(test_firmware_database

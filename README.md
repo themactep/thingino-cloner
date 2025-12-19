@@ -67,9 +67,23 @@ cat ../references/vendor/vendor_write_sequence.c
 - **capture_usb_traffic.sh** - Capture USB traffic from any cloner tool
 - **analyze_usb_capture.py** - Decode and analyze protocol
 - **compare_usb_captures.py** - Compare vendor vs thingino captures
+- **compare_firmware_blobs.py** - Cross-check embedded blobs vs vendor binaries and captured payloads
 - **analyze_write_operation.py** - Extract write sequences and generate code
 
 See [USB_CAPTURE_FRAMEWORK_SUMMARY.md](docs/reports/USB_CAPTURE_FRAMEWORK_SUMMARY.md) for details.
+
+#### Firmware blob comparison
+
+After running `analyze_usb_capture.py --extract-data`, verify that our embedded SPL/U-Boot (and optional full images) match the vendor binaries and captured payloads:
+
+```bash
+./tools/compare_firmware_blobs.py \
+   --variant t31 \
+   --image-path vendor/thingino-wyze_vdb1_t31x_sc4236_rtl8189ftv.bin \
+   --capture-uboot extracted_data/bulk_out_0002_frame13555_245760bytes.bin
+```
+
+The script auto-detects SPL blobs, exposes hash mismatches, and can reassemble 128KB chunks (from `extracted_data/`) into a single firmware image for end-to-end comparison.
 
 ## Documentation
 

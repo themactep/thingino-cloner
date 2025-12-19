@@ -75,6 +75,7 @@ python3 compare_usb_captures.py \
 | `compare_usb_captures.py` | Compare two captures | Difference report |
 | `analyze_write_operation.py` | Extract write sequence | C/Python code templates |
 | `analyze_write_with_binary.py` | **Correlate USB with binary** | **Correlation report** |
+| `compare_firmware_blobs.py` | Compare embedded/vendor/capture blobs | Hash + diff report |
 | `quick_write_analysis.sh` | Automated analysis | All outputs |
 | `quick_write_analysis_with_binary.sh` | **Automated with binary** | **All outputs + correlation** |
 
@@ -114,6 +115,21 @@ python3 analyze_usb_capture.py capture.pcap --verbose --extract-data
 # Extract to specific directory
 python3 analyze_usb_capture.py capture.pcap -e -o my_data
 ```
+
+### Compare Firmware Blobs
+```bash
+# Compare embedded blobs, vendor binaries, capture extracts, and full images
+./tools/compare_firmware_blobs.py \
+    --variant t31 \
+    --image-path vendor/thingino-wyze_vdb1_t31x_sc4236_rtl8189ftv.bin \
+    --capture-uboot extracted_data/bulk_out_0002_frame13555_245760bytes.bin
+
+# Override capture blobs or chunking if needed
+./tools/compare_firmware_blobs.py --variant t31x \
+    --capture-spl my_spl.bin --image-chunk-size 65536
+```
+
+The helper auto-parses `src/firmware/firmware_<variant>.c`, finds the matching vendor binaries under `vendor/cloner-2.5.43/`, and scans `extracted_data/` for `bulk_out_*.bin` payloads. When `--image-path` is provided it stitches the captured chunks (default 128KB) in order so you can confirm the final image matches what the vendor sent.
 
 ### Compare Captures
 ```bash

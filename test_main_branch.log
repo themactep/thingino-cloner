@@ -1,0 +1,16 @@
+ERROR: Failed to generate DDR binary
+Bootstrapping device [0]: t31x bootrom (Bus 003 Address 083)
+  Vendor: 0xa108, Product: 0xc309
+Starting bootstrap sequence for t31x
+CPU info: stage=firmware, magic='BOOTx183'
+Device stage updated to firmware based on CPU info
+Note: Using reference binary for DDR configuration
+✓ DDR configuration loaded from reference binary: 324 bytes
+Firmware loaded - Config: 324 bytes, SPL: 10092 bytes, U-Boot: 390532 bytes
+Loading DDR configuration
+DDR configuration loaded
+Loading SPL (Stage 1 bootloader)
+[ERROR] Bulk transfer failed: LIBUSB_ERROR_IO (endpoint=0x01, length=10092, timeout=5000ms)
+[ERROR] Bulk transfer failed: LIBUSB_ERROR_NO_DEVICE (endpoint=0x01, length=10092, timeout=5000ms)
+[ERROR] Bulk transfer failed: LIBUSB_ERROR_NO_DEVICE (endpoint=0x01, length=10092, timeout=5000ms)
+Bootstrap failed: Transfer failed

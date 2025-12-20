@@ -3,6 +3,7 @@
 #include "ddr_config_database.h"
 #include "firmware_database.h"
 #include "t20_reference_ddr.h"
+#include "t31zx_reference_ddr.h"
 
 // ============================================================================
 // FIRMWARE LOADER IMPLEMENTATION
@@ -27,14 +28,11 @@ static inline uint32_t ps_to_cycles_ceil(uint32_t ps, uint32_t freq_hz) {
 }
 
 /**
- * Generate DDR configuration binary dynamically using the new ddr_binary_builder API
+ * Generate DDR configuration binary using reference binaries
  *
- * This function generates a 324-byte DDR binary in the format:
- *   - FIDB section (192 bytes): Platform configuration (frequencies, UART, memory size)
- *   - RDD section (132 bytes): DDR PHY parameters (timing, geometry, DQ mapping)
- *
- * The format matches the Python script (ddr_compiler_final.py) and has been verified
- * to produce byte-perfect output for M14D1G1664A DDR2 @ 400MHz.
+ * Dynamic generation is disabled because the generated binary format
+ * doesn't match what the bootloader expects. The reference binaries
+ * work reliably and should be used until the format is fully reverse-engineered.
  */
 static thingino_error_t firmware_generate_ddr_config(processor_variant_t variant,
     uint8_t** config_buffer, size_t* config_size) {
@@ -46,97 +44,52 @@ static thingino_error_t firmware_generate_ddr_config(processor_variant_t variant
     DEBUG_PRINT("firmware_generate_ddr_config: variant=%d (%s)\n",
         variant, processor_variant_to_string(variant));
 
-    // WORKAROUND: T20 uses a different DDR binary format than T31X
-    // Use the vendor's reference binary for T20 until we reverse-engineer the format
-    if (variant == VARIANT_T20) {
-        DEBUG_PRINT("Using vendor reference DDR binary for T20 (different format than T31X)\n");
+    // Use reference binary - works reliably for all variants
+    DEBUG_PRINT("Using reference DDR binary (dynamic generation disabled)\n");
 
-        *config_buffer = (uint8_t*)malloc(vendor_ddr_t20_bin_len);
-        if (!*config_buffer) {
-            fprintf(stderr, "ERROR: Failed to allocate DDR buffer\n");
-            return THINGINO_ERROR_MEMORY;
-        }
+    // Get the appropriate reference binary for this variant
+    const uint8_t *ref_binary = NULL;
+    size_t ref_size = 0;
 
-        memcpy(*config_buffer, vendor_ddr_t20_bin, vendor_ddr_t20_bin_len);
-        *config_size = vendor_ddr_t20_bin_len;
+    // Select reference binary based on processor variant
+    switch (variant) {
+        case VARIANT_T20:
+        case VARIANT_T21:
+        case VARIANT_T23:
+            ref_binary = vendor_ddr_t20_bin;
+            ref_size = vendor_ddr_t20_bin_len;
+            DEBUG_PRINT("Using T20/T21/T23 reference DDR binary\n");
+            break;
 
-        DEBUG_PRINT("Using T20 reference DDR binary: %zu bytes\n", *config_size);
-        return THINGINO_SUCCESS;
+        case VARIANT_T30:
+        case VARIANT_T31:
+        case VARIANT_T31X:
+        case VARIANT_T31ZX:
+            ref_binary = vendor_ddr_t31zx_bin;
+            ref_size = vendor_ddr_t31zx_bin_len;
+            DEBUG_PRINT("Using T31 family reference DDR binary\n");
+            break;
+
+        case VARIANT_T40:
+        case VARIANT_T41:
+        default:
+            // For T40/T41 and other variants, use T31ZX as default
+            ref_binary = vendor_ddr_t31zx_bin;
+            ref_size = vendor_ddr_t31zx_bin_len;
+            DEBUG_PRINT("Using T31ZX reference DDR binary (default for variant %d)\n", variant);
+            break;
     }
 
-    // Get platform configuration based on processor variant
-    platform_config_t platform_cfg;
-    if (ddr_get_platform_config_by_variant(variant, &platform_cfg) != 0) {
-        fprintf(stderr, "ERROR: Unsupported processor variant for DDR generation: %d\n", variant);
-        return THINGINO_ERROR_INVALID_PARAMETER;
-    }
-
-    DEBUG_PRINT("Platform config: crystal=%u Hz, cpu=%u Hz, ddr=%u Hz, uart=%u baud, mem=%u bytes\n",
-        platform_cfg.crystal_freq, platform_cfg.cpu_freq, platform_cfg.ddr_freq,
-        platform_cfg.uart_baud, platform_cfg.mem_size);
-
-    // Get DDR chip configuration from database
-    const char *platform_name = processor_variant_to_string(variant);
-    const ddr_chip_config_t *chip_cfg = ddr_chip_config_get_default(platform_name);
-    if (!chip_cfg) {
-        fprintf(stderr, "ERROR: No default DDR chip found for platform: %s\n", platform_name);
-        return THINGINO_ERROR_INVALID_PARAMETER;
-    }
-
-    DEBUG_PRINT("Using DDR chip: %s (%s)\n", chip_cfg->name, chip_cfg->vendor);
-
-    // Convert timing parameters from picoseconds to clock cycles
-    ddr_phy_params_t phy_params;
-    phy_params.ddr_type = chip_cfg->ddr_type;
-    phy_params.row_bits = chip_cfg->row_bits;
-    phy_params.col_bits = chip_cfg->col_bits;
-    phy_params.cl = chip_cfg->cl;
-    phy_params.bl = chip_cfg->bl;
-    phy_params.tRAS = ps_to_cycles_ceil(chip_cfg->tRAS, platform_cfg.ddr_freq);
-    phy_params.tRC = ps_to_cycles_ceil(chip_cfg->tRC, platform_cfg.ddr_freq);
-    phy_params.tRCD = ps_to_cycles_ceil(chip_cfg->tRCD, platform_cfg.ddr_freq);
-    phy_params.tRP = ps_to_cycles_ceil(chip_cfg->tRP, platform_cfg.ddr_freq);
-    phy_params.tRFC = ps_to_cycles_ceil(chip_cfg->tRFC, platform_cfg.ddr_freq);
-    phy_params.tRTP = ps_to_cycles_ceil(chip_cfg->tRTP, platform_cfg.ddr_freq);
-    phy_params.tFAW = ps_to_cycles_ceil(chip_cfg->tFAW, platform_cfg.ddr_freq);
-    phy_params.tRRD = ps_to_cycles_ceil(chip_cfg->tRRD, platform_cfg.ddr_freq);
-    phy_params.tWTR = ps_to_cycles_ceil(chip_cfg->tWTR, platform_cfg.ddr_freq);
-
-    DEBUG_PRINT("DDR PHY params: type=%u, row=%u, col=%u, CL=%u, BL=%u\n",
-        phy_params.ddr_type, phy_params.row_bits, phy_params.col_bits,
-        phy_params.cl, phy_params.bl);
-    DEBUG_PRINT("Timing (cycles): tRAS=%u, tRC=%u, tRCD=%u, tRP=%u, tRFC=%u, tRTP=%u, tFAW=%u, tRRD=%u, tWTR=%u\n",
-        phy_params.tRAS, phy_params.tRC, phy_params.tRCD, phy_params.tRP, phy_params.tRFC,
-        phy_params.tRTP, phy_params.tFAW, phy_params.tRRD, phy_params.tWTR);
-
-    // Allocate buffer for DDR binary (324 bytes)
-    *config_buffer = (uint8_t*)malloc(DDR_BINARY_SIZE);
+    *config_buffer = (uint8_t*)malloc(ref_size);
     if (!*config_buffer) {
         fprintf(stderr, "ERROR: Failed to allocate DDR buffer\n");
         return THINGINO_ERROR_MEMORY;
     }
 
-    // Generate the DDR binary using the new API
-    DEBUG_PRINT("Generating 324-byte DDR binary (FIDB + RDD format)\n");
-    size_t generated_size = ddr_build_binary(&platform_cfg, &phy_params, *config_buffer);
-    if (generated_size == 0) {
-        fprintf(stderr, "ERROR: Failed to generate DDR binary\n");
-        free(*config_buffer);
-        *config_buffer = NULL;
-        return THINGINO_ERROR_PROTOCOL;
-    }
+    memcpy(*config_buffer, ref_binary, ref_size);
+    *config_size = ref_size;
 
-    *config_size = generated_size;
-    DEBUG_PRINT("Successfully generated %zu bytes DDR binary\n", *config_size);
-
-    // TEMPORARY DEBUG: Save generated DDR binary for analysis
-    FILE *debug_f = fopen("/tmp/t20_ddr_debug.bin", "wb");
-    if (debug_f) {
-        fwrite(*config_buffer, 1, *config_size, debug_f);
-        fclose(debug_f);
-        DEBUG_PRINT("DEBUG: Saved generated DDR binary to /tmp/t20_ddr_debug.bin\n");
-    }
-
+    DEBUG_PRINT("Using reference DDR binary: %zu bytes\n", *config_size);
     return THINGINO_SUCCESS;
 }
 

@@ -1,0 +1,17 @@
+Bootstrapping device [0]: t31zx bootrom (Bus 003 Address 093)
+  Vendor: 0xa108, Product: 0xc309
+Starting bootstrap sequence for t31zx
+CPU magic (raw hex): 54 20 33 20 31 20 56 20 
+CPU info: stage=bootrom, magic='T 3 1 V '
+Detected processor variant: t31zx (from magic: 'T 3 1 V ')
+✓ DDR configuration generated dynamically: 324 bytes
+Firmware loaded - Config: 324 bytes, SPL: 10092 bytes, U-Boot: 390532 bytes
+Loading DDR configuration
+DDR configuration loaded
+Loading SPL (Stage 1 bootloader)
+SPL loaded
+SPL execution started
+Loading U-Boot (Stage 2 bootloader)
+U-Boot loaded
+Bootstrap sequence completed successfully
+Bootstrap completed successfully!

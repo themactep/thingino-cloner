@@ -1,0 +1,3 @@
+/usr/bin/cmake -E rm -f CMakeFiles/thingino-cloner.dir/objects.a
+/usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/thingino-cloner.dir/objects.a @CMakeFiles/thingino-cloner.dir/objects1.rsp
+/usr/bin/x86_64-w64-mingw32-gcc -O3 -DNDEBUG -Wl,--whole-archive CMakeFiles/thingino-cloner.dir/objects.a -Wl,--no-whole-archive -o thingino-cloner.exe -Wl,--out-implib,libthingino-cloner.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/thingino-cloner.dir/linkLibs.rsp

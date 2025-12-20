@@ -1,0 +1,27 @@
+CMakeFiles/thingino-cloner.dir/src/firmware/firmware_database.c.obj: \
+ /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_database.c \
+ /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_database.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/14-win32/include/stddef.h \
+ /usr/share/mingw-w64/include/stddef.h \
+ /usr/share/mingw-w64/include/crtdefs.h \
+ /usr/share/mingw-w64/include/corecrt.h \
+ /usr/share/mingw-w64/include/_mingw.h \
+ /usr/share/mingw-w64/include/_mingw_mac.h \
+ /usr/share/mingw-w64/include/_mingw_secapi.h \
+ /usr/share/mingw-w64/include/vadefs.h \
+ /usr/share/mingw-w64/include/sdks/_mingw_ddk.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/14-win32/include/stdint.h \
+ /usr/share/mingw-w64/include/stdint.h \
+ /home/squash/go/src/github.com/wltechblog/thingino-cloner-c/src/firmware/firmware_registry.h \
+ /usr/share/mingw-w64/include/string.h \
+ /usr/share/mingw-w64/include/sec_api/string_s.h \
+ /usr/share/mingw-w64/include/strings.h \
+ /usr/share/mingw-w64/include/stdlib.h \
+ /usr/share/mingw-w64/include/corecrt_wstdlib.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/14-win32/include/limits.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/14-win32/include/syslimits.h \
+ /usr/share/mingw-w64/include/limits.h \
+ /usr/share/mingw-w64/include/sec_api/stdlib_s.h \
+ /usr/share/mingw-w64/include/malloc.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/14-win32/include/mm_malloc.h \
+ /usr/share/mingw-w64/include/errno.h

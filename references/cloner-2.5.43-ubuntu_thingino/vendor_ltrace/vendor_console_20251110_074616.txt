@@ -1,0 +1,3 @@
+static QPlatformTheme* QKdeTheme::createKdeTheme(): Unable to determine KDEHOME
+cong thread= 0x7f0c3ffff6c0 
+socket interaction test 0 

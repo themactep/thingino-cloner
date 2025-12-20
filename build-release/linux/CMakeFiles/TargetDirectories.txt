@@ -1,0 +1,17 @@
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/thingino-cloner.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/test_ddr_generator.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/test_ddr_multiplechip.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/test_ddr_reference_analysis.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/test_ddr_mapping_analysis.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/test_txx_mapping_analysis.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/test_ddrc_analysis.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/test_binary_builder.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/test_ddr_integration.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/test_config_database.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/test_firmware_database.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/edit_cache.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/rebuild_cache.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/list_install_components.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/install.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/install/local.dir
+/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/build-release/linux/CMakeFiles/install/strip.dir

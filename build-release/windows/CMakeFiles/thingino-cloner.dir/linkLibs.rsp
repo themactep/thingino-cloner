@@ -1,0 +1,1 @@
+ "/home/squash/go/src/github.com/wltechblog/thingino-cloner-c/third_party/libusb/windows/x86_64/lib/libusb-1.0.dll.a" -lz -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

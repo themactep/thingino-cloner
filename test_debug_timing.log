@@ -1,0 +1,74 @@
+[DEBUG] Initializing USB manager...
+[DEBUG] libusb initialized successfully
+[DEBUG] Processing 7 devices
+[DEBUG] Device 0: VID=0x1D6B, PID=0x0003
+[DEBUG] Device 1: VID=0xA108, PID=0xC309
+[DEBUG] Found Ingenic device 1 (VID:0xA108, PID:0xC309)
+[DEBUG] Device 2: VID=0x30C9, PID=0x002B
+[DEBUG] Device 3: VID=0x8087, PID=0x0026
+[DEBUG] Device 4: VID=0x1D6B, PID=0x0002
+[DEBUG] Device 5: VID=0x1D6B, PID=0x0003
+[DEBUG] Device 6: VID=0x1D6B, PID=0x0002
+[DEBUG] Found 1 Ingenic devices
+[DEBUG] Allocating memory for 1 devices
+[DEBUG] Memory allocated successfully
+[DEBUG] Checking CPU info for device 0 to determine actual stage
+[DEBUG] Allocating device structure...
+[DEBUG] Setting device info and context...
+[DEBUG] Manager device variant: 5 (t31x)
+[DEBUG] Initializing device (bus=3, addr=79)...
+[DEBUG] usb_device_init: preserving variant 5, stage=0, context=0x55b0d2bc82b0
+[DEBUG] Device initialized: VID:0xA108, PID:0xC309, Bus:3, Addr:79
+[DEBUG] Device initialized successfully
+[DEBUG] GetCPUInfo: Starting CPU info request (VID:0xA108, PID:0xC309)
+[DEBUG] GetCPUInfo: Sending vendor request VR_GET_CPU_INFO (0x00)
+[DEBUG] GetCPUInfo: Direct control transfer succeeded: 8 bytes
+[DEBUG] GetCPUInfo: Got 8 bytes of response data
+[DEBUG] GetCPUInfo: CPU magic bytes: [DEBUG] 0x54 [DEBUG] 0x20 [DEBUG] 0x33 [DEBUG] 0x20 [DEBUG] 0x31 [DEBUG] 0x20 [DEBUG] 0x56 [DEBUG] 0x20 [DEBUG] -> string = 'T31V' -> clean = 'T 3 1 V '
+[DEBUG] GetCPUInfo: Device is in bootrom stage
+[DEBUG] Device 0 is in bootrom stage (CPU magic: T 3 1 V )
+[DEBUG] detect_variant_from_magic: input='T 3 1 V ' (length=8)
+[DEBUG] detect_variant_from_magic: checking pattern match
+[DEBUG] detect_variant_from_magic: matched T31V -> T31ZX
+[DEBUG] Updated device 0 variant to t31zx (6) based on CPU magic
+Bootstrapping device [0]: t31zx bootrom (Bus 003 Address 079)
+  Vendor: 0xa108, Product: 0xc309
+[DEBUG] Opening device...
+[DEBUG] Allocating device structure...
+[DEBUG] Setting device info and context...
+[DEBUG] Manager device variant: 6 (t31zx)
+[DEBUG] Initializing device (bus=3, addr=79)...
+[DEBUG] usb_device_init: preserving variant 6, stage=0, context=0x55b0d2bc82b0
+[DEBUG] Device initialized: VID:0xA108, PID:0xC309, Bus:3, Addr:79
+[DEBUG] Device initialized successfully
+[DEBUG] Device opened successfully
+[DEBUG] Device variant from manager: 6 (t31zx)
+[DEBUG] Device variant from opened device: 6 (t31zx)
+Starting bootstrap sequence for t31zx
+[DEBUG] Skipping device reset (vendor tool doesn't reset)
+[DEBUG] Getting CPU info...
+[DEBUG] GetCPUInfo: Starting CPU info request (VID:0xA108, PID:0xC309)
+[DEBUG] GetCPUInfo: Sending vendor request VR_GET_CPU_INFO (0x00)
+[DEBUG] GetCPUInfo: Direct control transfer succeeded: 8 bytes
+[DEBUG] GetCPUInfo: Got 8 bytes of response data
+[DEBUG] GetCPUInfo: CPU magic bytes: [DEBUG] 0x54 [DEBUG] 0x20 [DEBUG] 0x33 [DEBUG] 0x20 [DEBUG] 0x31 [DEBUG] 0x20 [DEBUG] 0x56 [DEBUG] 0x20 [DEBUG] -> string = 'T31V' -> clean = 'T 3 1 V '
+[DEBUG] GetCPUInfo: Device is in bootrom stage
+CPU magic (raw hex): 54 20 33 20 31 20 56 20 
+CPU info: stage=bootrom, magic='T 3 1 V '
+[DEBUG] detect_variant_from_magic: input='T 3 1 V ' (length=8)
+[DEBUG] detect_variant_from_magic: checking pattern match
+[DEBUG] detect_variant_from_magic: matched T31V -> T31ZX
+Detected processor variant: t31zx (from magic: 'T 3 1 V ')
+[DEBUG] Loading firmware files...
+[DEBUG] Using default firmware files
+[DEBUG] firmware_load: variant=6 (t31zx)
+[DEBUG] firmware_load: matched VARIANT_T31ZX (6)
+[DEBUG] firmware_load: calling firmware_load_t31x
+[DEBUG] Loading T31X firmware...
+[DEBUG] Attempting to generate DDR configuration dynamically
+[DEBUG] firmware_generate_ddr_config: variant=5 (t31x)
+[DEBUG] Platform config: crystal=24000000 Hz, cpu=576000000 Hz, ddr=400000000 Hz, uart=115200 baud, mem=8388608 bytes
+[DEBUG] Using DDR chip: M14D1G1664A_DDR2 (ESMT)
+[DEBUG] Timing (ps): tRAS=45000, tRC=56250, tRCD=15000, tRP=15000, tRFC=130000, tRTP=7500, tFAW=45000, tRRD=10000, tWTR=7500
+[DEBUG] DDR PHY params: type=1, row=13, col=10, CL=7, BL=8
+[DEBUG] Timing (cycles): tRAS=18, tRC=23, tRCD=6, tRP=6, tRFC=52, tR

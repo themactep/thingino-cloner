@@ -476,7 +476,7 @@ thingino_error_t usb_device_vendor_request(usb_device_t* device, uint8_t request
         return THINGINO_ERROR_TRANSFER_FAILED;
     }
 
-    // Special handling for firmware-stage VR_SET_DATA_ADDR (0x01) during NOR
+    // Special handling for firmware-stage VR_SET_DATA_ADDR (0x01) and VR_SET_DATA_LEN (0x02) during NOR
     // writer_full operations. When the cloner starts a full-image burn with
     // force_erase enabled, the first SetDataAddress/SetDataLength pair
     // triggers a full chip erase. While the erase is in progress the
@@ -485,10 +485,12 @@ thingino_error_t usb_device_vendor_request(usb_device_t* device, uint8_t request
     // been accepted and the erase is progressing.
     //
     // To avoid aborting the write with "Failed to set flash base address"
-    // in this situation, treat a timeout on VR_SET_DATA_ADDR in firmware
-    // stage as "device busy but OK" and let subsequent operations (status
-    // checks, handshakes, data transfers) detect any real failures.
-    if (request_type == REQUEST_TYPE_OUT && request == VR_SET_DATA_ADDR &&
+    // or "Failed to set firmware write length" in this situation, treat a
+    // timeout on VR_SET_DATA_ADDR or VR_SET_DATA_LEN in firmware stage as
+    // "device busy but OK" and let subsequent operations (status checks,
+    // handshakes, data transfers) detect any real failures.
+    if (request_type == REQUEST_TYPE_OUT &&
+        (request == VR_SET_DATA_ADDR || request == VR_SET_DATA_LEN) &&
         device->info.stage == STAGE_FIRMWARE) {
 
         uint8_t* buffer = response ? response : data;
@@ -503,15 +505,17 @@ thingino_error_t usb_device_vendor_request(usb_device_t* device, uint8_t request
         }
 
         if (result == LIBUSB_ERROR_TIMEOUT) {
-            DEBUG_PRINT("Vendor request VR_SET_DATA_ADDR timed out in firmware stage; "
-                        "assuming device is busy (chip erase in progress) and treating as success\n");
+            const char *req_name = (request == VR_SET_DATA_ADDR) ? "VR_SET_DATA_ADDR" : "VR_SET_DATA_LEN";
+            DEBUG_PRINT("Vendor request %s timed out in firmware stage; "
+                        "assuming device is busy (chip erase in progress) and treating as success\n", req_name);
             if (response_length) {
                 *response_length = 0;
             }
             return THINGINO_SUCCESS;
         }
 
-        DEBUG_PRINT("Vendor request VR_SET_DATA_ADDR failed: %s\n", libusb_error_name(result));
+        const char *req_name = (request == VR_SET_DATA_ADDR) ? "VR_SET_DATA_ADDR" : "VR_SET_DATA_LEN";
+        DEBUG_PRINT("Vendor request %s failed: %s\n", req_name, libusb_error_name(result));
         return THINGINO_ERROR_TRANSFER_FAILED;
     }
 
